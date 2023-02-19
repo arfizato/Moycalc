@@ -1,3 +1,38 @@
+# The New Moycalc 🎉
+
+Now using sveltekit for a better DX. 
+<br>
+Planing to make it completely dynamic ad easy to use
+
+## TODO
+
+- Fix layout overflow in (`/create`)
+- Add actual data in main (`/`)
+- Actually calculate the grades (maybe credits)
+- Add feat to send the grades to the user through email or download pdf
+- Add a way for people to submit their templates to be saved
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
