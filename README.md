@@ -12,6 +12,10 @@ Planing to make it completely dynamic ad easy to use
 - Add feat to send the grades to the user through email or download pdf
 - Add a way for people to submit their templates to be saved
 
+## Contribution & Feedback
+
+Any contribution and feedback is always appreciated. You can create an issue or pull request here or reach out to me on my socials (づ￣ 3￣)づ
+
 <br>
 <br>
 <br>
