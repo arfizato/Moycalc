@@ -1,6 +1,8 @@
 <script lang="ts">
+    import Swal from 'sweetalert2'
     import { browser } from "$app/environment";// @ts-ignore
-    function handleMouseMove(e){
+	import { validate_component } from 'svelte/internal';
+    function handleMouseMove(e:any){
         if (browser){
             let oof= document.getElementById("formcontainer");
             let rect = oof?.getBoundingClientRect(),// @ts-ignore
@@ -16,46 +18,137 @@
     function b64_to_utf8(str:string) {
         return decodeURIComponent(escape(window.atob(str)));
     }
-    interface RegimeMixte  {
+    interface RegMixControleContiue  {
         coef: number[];
         subjects: { name: string, coef: any, grades: any[] }[];
     }
-    interface ControleContinue  {
-        coef: number[];
-        subjects: { name: string, coef: any, grades: any[]  }[];
-    }
-    let regmix:RegimeMixte ={
+    interface RegMixControleContiueSubjects{
+        name: string, coef: any, grades: any[] 
+    }[];
+    let regmix:RegMixControleContiue ={
             coef: [0.3, 0.7], 
             subjects: [
-                // {name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1}
+                //{name:"sqdqs",coef:1,grades:[,]},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1}
             ]
         }, 
-        cc:ControleContinue ={
+        cc:RegMixControleContiue ={
             coef: [0.4, 0.4, 0.2], 
             subjects: []
         },
+        name="",
         regmixCoefNames=["DS","Exam"],
         ccCoefNames=["DS1","DS2","CC"];
+    //
+    function isSubjectValid(arr:any,str: string){
+        let valid: Boolean= true;
+        arr.forEach((elem:any,i:number) => {
+            if (elem["name"]===""){                
+                document.querySelector(`#${str}name${i}`)?.classList.remove("border-b-zinc-800")
+                document.querySelector(`#${str}name${i}`)?.classList.add("border-b-red-400")
+                valid= false
+            }else{                
+                document.querySelector(`#${str}name${i}`)?.classList.remove("border-b-red-400")
+                document.querySelector(`#${str}name${i}`)?.classList.add("border-b-zinc-800")
+            }
 
-    function createTemplate(){
-        console.log("wawa")
+            if (elem["coef"]===null){
+                document.querySelector(`#${str}coef${i}`)?.classList.remove("border-b-zinc-800")
+                document.querySelector(`#${str}coef${i}`)?.classList.add("border-b-red-400")
+                valid= false
+            }else{                
+                document.querySelector(`#${str}coef${i}`)?.classList.remove("border-b-red-400")
+                document.querySelector(`#${str}coef${i}`)?.classList.add("border-b-zinc-800")
+            }
+        });
+
+        return valid
+    }
+    function isCoefValid(arr:number[],idArr: string[]){
+        let valid: Boolean= true;
+        arr.forEach((elem:any,i:number) => {
+            console.warn(elem)
+            if (elem===null){                
+                document.getElementById(idArr[i])?.classList.remove("border-b-zinc-800")
+                document.getElementById(idArr[i])?.classList.add("border-b-red-400")
+                valid= false
+                console.log(idArr[i],valid)
+            }else{                
+                document.getElementById(idArr[i])?.classList.remove("border-b-red-400")
+                document.getElementById(idArr[i])?.classList.add("border-b-zinc-800")
+            }
+        });
+        console.log("return",valid)
+        return valid
+    }
+    async function createTemplate(){
+        let isInputValid: Boolean = (regmix["subjects"].length>0 || cc["subjects"].length>0)
+                                    &&isSubjectValid(regmix["subjects"],"RM")&&isSubjectValid(cc["subjects"],"CC")
+                                    &&isCoefValid(regmix["coef"], regmixCoefNames)&&isCoefValid(cc["coef"], ccCoefNames)
+        console.error("isvalid",isInputValid)
+        if (!isInputValid) 
+            return Swal.fire({
+                title: 'Error!',
+                text: 'Invalid Input',
+                icon: 'error',
+                confirmButtonText: 'I\'ll Correct My Mistakes',
+                background: "#111",
+                backdrop:"#00000070",
+                color: "#fff",
+                buttonsStyling: false,
+                customClass:{
+                    confirmButton:"bg-transparent text-white py-2 px-4 hover:bg-white hover:text-black transition-all duration-200 border-2 border-white rounded-md",
+                }
+            })
+
+        // @ts-ignore
+        const { value: name } = await Swal.fire({
+            title: 'Enter a name For the template',
+            input: 'text',
+            inputLabel: 'Make sure it\'s readable for if you share it with others',
+            inputValue: "",
+            showCancelButton: true,
+            background: "#111",
+            backdrop:"#00000070",
+            color: "#fff",
+            buttonsStyling: false,
+            customClass:{
+                confirmButton:"bg-transparent text-white py-2 px-4 hover:bg-white hover:text-black transition-all duration-200 border-2 border-white rounded-md  mx-2 ",
+                cancelButton:"bg-zinc-800 text-white py-2 px-4 hover:bg-white hover:text-black transition-all duration-200 border-2 border-white rounded-md mx-2",
+                inputLabel:"text-zinc-400",
+                // validationMessage:"bg-transparent text-white"
+            },
+            inputValidator: (value) => {
+                if (!value) {
+                return 'You need to write something!'
+                }
+            }
+        })
+        if (name) {
+            const param:string = utf8_to_b64(JSON.stringify({name,regmix,cc}))
+            if (browser) {
+                window.location.href="/calculate?data="+param
+            }
+        }
 
     }
     function addRow(itIsRegmix:boolean){
-        console.log("wawasqdq");
         if (browser){
             let oof= document.getElementById("formcontainer");            
             let rect = oof?.getBoundingClientRect()// @ts-ignore
             document.body.style.height=`${rect?.height+150}px`;
+            let newElem;
+            if (itIsRegmix){
+                regmix["subjects"]= [...regmix["subjects"], {name:"",coef:undefined,grades:[,]}]// @ts-ignore
+                setTimeout(()=> document.getElementById(`RMname${regmix["subjects"].length-1}`).focus(),100)
+            }
+            else{
+                cc["subjects"]= [...cc["subjects"], {name:"",coef:undefined,grades:[,,] }]// @ts-ignore
+                setTimeout(()=> document.getElementById(`CCname${cc["subjects"].length-1}`).focus(),100)
+            }
         }
-        if (itIsRegmix)
-            regmix["subjects"]= [...regmix["subjects"], {name:"",coef:undefined,grades:[,]}]
-        else
-            cc["subjects"]= [...cc["subjects"], {name:"",coef:undefined,grades:[,,] }]
 
     }
     function delRow(className: string,index: number){
-        console.log("wawa", className)
         if (className[0]==="c"){
             cc["subjects"].splice(index,1)
             cc["subjects"]= cc["subjects"]
@@ -74,7 +167,7 @@
     Welcome to Moycalc my bro
 </h1> -->
 <section id="main" class="w-full h-screen min-h-fit grid justify-items-center bg-black " on:mousemove={(e)=> handleMouseMove(e)} >
-    <div id="formcontainer" class="h-fit min-h-3/4 w-3/4 bg-zinc-800 rounded ">
+    <div id="formcontainer" class="h-fit min-h-3/4 w-3/4 bg-zinc-800 rounded mt-24">
         <form id="form" class="rounded flex flex-col justify-evenly   ">
             <h1 class="text-5xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">
                 Create Your own template
@@ -109,7 +202,7 @@
                     <button on:click|preventDefault={() => addRow(true)}
                         class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-xl mt-4 mb-8 py-2 px-8 
                             rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 ">
-                        ADD
+                        ➕ADD
                     </button>
                 </div>                
             </div>
@@ -132,9 +225,9 @@
                     <p class="capitalize text-xl ">coefficient</p>
                     {#each cc["subjects"] as subject, i}
                         <button class={"mt-4 cc"+i} on:click|preventDefault={()=> delRow("cc"+i,i)} >❌{i}</button>
-                        <input type="text" bind:value={subject["name"]} id={"RMname"+i} placeholder="subject"
+                        <input type="text" bind:value={subject["name"]} id={"CCname"+i} placeholder="subject"
                             class={"mt-4 bg-inherit p-1 border-b-2 border-b-zinc-800  cc"+i}>
-                        <input type="number" bind:value={subject["coef"]} id={"RMcoef"+i} placeholder="coef"
+                        <input type="number" bind:value={subject["coef"]} id={"CCcoef"+i} placeholder="coef"
                             class={"mt-4 bg-inherit p-1 border-b-2 border-b-zinc-800  cc"+i}>                        
                     {/each}
                 </div>
@@ -142,15 +235,15 @@
                     <button on:click|preventDefault={() => addRow(false)}
                         class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-xl mt-4 mb-8 py-2 px-8 
                             rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 ">
-                        ADD
+                        ➕ADD
                     </button>
                 </div>                
             </div>
 
             <button on:click|preventDefault={createTemplate}
-                class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-xl w-max mx-auto mt-4 mb-8 py-2 px-8 
+                class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-xl w-max mx-auto mt-4 mb-8 py-2 px-12 
                     rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 ">
-                Submit
+                I'm Done!
             </button>
         </form>
 
@@ -172,7 +265,7 @@
     #main{
         #formcontainer{
             position: relative;
-            margin: 50px;
+            /* margin: 50px; */
             &::before{
                 border-radius: 0.25rem;
                 content: "";

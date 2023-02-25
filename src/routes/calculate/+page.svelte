@@ -1,6 +1,10 @@
 <script lang="ts">
+    import Swal from 'sweetalert2'
     import { browser } from "$app/environment";// @ts-ignore
-    function boy(e){
+	/** @type {import('./$types').PageData} */
+    export let data:any;
+    console.log("data",data)
+    function handleMouseMove(e:any){
         if (browser){
             let oof= document.getElementById("formcontainer");
             let rect = oof?.getBoundingClientRect(),// @ts-ignore
@@ -10,40 +14,81 @@
             oof?.style.setProperty("--mouse-y", `${y}px`)
         }
     }
-    const name = "BDAD 2nd semester",
-        regmix= {
+    let name:any = "",
+        regmix:any= {
             coef:[0.3,0.7],
             subjects:[
-                {name:"Algebre 2",  coef:1.5,   grades:[,] },
-                {name:"Analyse 2",  coef:1.5,   grades:[,] },
-                {name:"Algo",       coef:1.5,   grades:[,] },
-                {name:"C",          coef:1,     grades:[,] },
-                {name:"Python",     coef:1,     grades:[,] },
-                {name:"SE 2",       coef:1.5,   grades:[,] },
-                {name:"Réseaux",    coef:2,     grades:[,] },
-                {name:"BDD",        coef:2,     grades:[,] },
-        ]
+                // {name:"Algebre 2",  coef:1.5,   grades:[,] }, {name:"Analyse 2",  coef:1.5,   grades:[,] }, {name:"Algo",       coef:1.5,   grades:[,] }, {name:"C",          coef:1,     grades:[,] }, {name:"Python",     coef:1,     grades:[,] }, {name:"SE 2",       coef:1.5,   grades:[,] }, {name:"Réseaux",    coef:2,     grades:[,] }, {name:"BDD",        coef:2,     grades:[,] },
+            ]
         },
-        cc = {
+        cc:any = {
             coef: [0.4,0.4,0.2],
             subjects:[                
-                {name:"Eng 2",  coef:1 , grades:[,,]},
-                {name:"Comm 2", coef:1 , grades:[,,]},
-                {name:"2CN",    coef:1 , grades:[,,]},
+                // {name:"Eng 2",  coef:1 , grades:[,,]}, {name:"Comm 2", coef:1 , grades:[,,]}, {name:"2CN",    coef:1 , grades:[,,]},
             ]
         };
-        function utf8_to_b64(str:String) {
-            return window.btoa(unescape(encodeURIComponent(str)));
-        }
+    setTimeout( ()=>({name,regmix,cc}= data) ,100)
+    
+    function utf8_to_b64(str:string) {
+        return window.btoa(unescape(encodeURIComponent(str)));
+    }
+    function b64_to_utf8(str:string) {
+        return decodeURIComponent(escape(window.atob(str)));
+    }
+    function isValidInput(arr:any,str:string){
+        let valid:Boolean = true;
+        arr.forEach((elem:any,i:number) => {
+            elem["grades"].forEach((grade:number,j:number) => {
+                if(grade===null || grade>20 || grade<0){
+                    valid=false;
+                    // Swal.fire("null")
+                    document.querySelector(`#${str}_${i}_${j}`)?.classList.add("border-b-red-400")
+                    document.querySelector(`#${str}_${i}_${j}`)?.classList.remove("border-b-zinc-800")
+                // } else if (){                    
+                //     valid=false;
+                //     // Swal.fire("gotta be in [0..20]")
+                //     document.querySelector(`#${str}_${i}_${j}`)?.classList.add("border-b-red-400")
+                //     document.querySelector(`#${str}_${i}_${j}`)?.classList.remove("border-b-zinc-800")
+                } else{                    
+                    document.querySelector(`#${str}_${i}_${j}`)?.classList.remove("border-b-red-400")
+                    document.querySelector(`#${str}_${i}_${j}`)?.classList.add("border-b-zinc-800")
+                }
+            });
+        });
 
-        function b64_to_utf8(str:String) {
-            return decodeURIComponent(escape(window.atob(str)));
-        }
-        function moyCalculate(){
-            let regmixS= JSON.stringify(regmix)
-            let ccS= JSON.stringify({name,regmix,cc});
-            console.log( ccS, utf8_to_b64(ccS) )
-        }
+        return valid
+    }
+    function calcCategory(obj:any,coefTotal:number=0,gradesTotal:number=0){
+        obj["subjects"].forEach((subj:any,i:number) => {
+            coefTotal+=subj.coef;
+            let subjTotal=0;
+            subj["grades"].forEach((grade:any,j:number) => {
+                subjTotal+=grade*obj.coef[j]
+            });
+            gradesTotal+=subjTotal*subj.coef
+        });
+        return {coefTotal,gradesTotal}
+    }
+    function moyCalculate(){
+        const validInput:Boolean = isValidInput(regmix["subjects"],'regmix') && isValidInput(cc["subjects"],"cc") 
+        if (!validInput) 
+            return Swal.fire({
+                title: 'Error!',
+                text: 'Invalid Input',
+                icon: 'error',
+                confirmButtonText: 'I\'ll Correct My Mistakes',
+                background: "#111",
+                backdrop:"#00000070",
+                color: "#fff",
+                buttonsStyling: false,
+                customClass:{
+                    confirmButton:"bg-transparent text-white py-2 px-4 hover:bg-white hover:text-black transition-all duration-200 border-2 border-white rounded-md",
+                }
+            })
+        let{ coefTotal, gradesTotal}= calcCategory(regmix);
+        ({coefTotal,gradesTotal}= calcCategory(cc,coefTotal,gradesTotal));
+        Swal.fire(`Moyenne:${gradesTotal/coefTotal}`)
+    }
 </script>
 
 <svelte:head>
@@ -53,7 +98,8 @@
 <!-- <h1 class="text-3xl font-bold underline">
     Welcome to Moycalc my bro
 </h1> -->
-<section id="main" class="w-full h-screen flex items-center justify-center bg-black " on:mousemove={(e)=> boy(e)} >
+    
+<section id="main" class="w-full h-screen flex items-center justify-center bg-black " on:mousemove={(e)=> handleMouseMove(e)} >
     <div id="formcontainer" class="h-fit min-h-3/4 w-3/4 bg-zinc-800 rounded">
         <form id="form" class="rounded flex flex-col justify-evenly   ">
             <h1 class="text-5xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">
@@ -95,8 +141,9 @@
 
     </div>
 </section>
-
 <style lang="postcss">
+
+
     /* @import url('https://fonts.googleapis.com/css2?family=Phudu:wght@300;400;500;600;700;800;900&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap'); */
 
 
@@ -181,3 +228,29 @@
         }
     }
 </style>
+
+
+
+
+<!-- // const name = "BDAD 2nd semester",
+//     regmix= {
+//         coef:[0.3,0.7],
+//         subjects:[
+//             {name:"Algebre 2",  coef:1.5,   grades:[,] },
+//             {name:"Analyse 2",  coef:1.5,   grades:[,] },
+//             {name:"Algo",       coef:1.5,   grades:[,] },
+//             {name:"C",          coef:1,     grades:[,] },
+//             {name:"Python",     coef:1,     grades:[,] },
+//             {name:"SE 2",       coef:1.5,   grades:[,] },
+//             {name:"Réseaux",    coef:2,     grades:[,] },
+//             {name:"BDD",        coef:2,     grades:[,] },
+//     ]
+//     },
+//     cc = {
+//         coef: [0.4,0.4,0.2],
+//         subjects:[                
+//             {name:"Eng 2",  coef:1 , grades:[,,]},
+//             {name:"Comm 2", coef:1 , grades:[,,]},
+//             {name:"2CN",    coef:1 , grades:[,,]},
+//         ]
+//     }; -->

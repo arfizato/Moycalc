@@ -5,6 +5,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .merriweatherSansFont{
     font-family: 'Merriweather Sans', sans-serif;
 }
