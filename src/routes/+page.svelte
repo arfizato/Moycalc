@@ -6,8 +6,8 @@
             let rect = oof?.getBoundingClientRect(),// @ts-ignore
                 x = e.clientX - rect?.left,// @ts-ignore
                 y = e.clientY - rect?.top;
-            oof?.style.setProperty("--mouse-x", `${e.clientX-250}px`)            
-            oof?.style.setProperty("--mouse-y", `${e.clientY-100}px`)
+            oof?.style.setProperty("--mouse-x", `${x}px`)            
+            oof?.style.setProperty("--mouse-y", `${y}px`)
         }
     }
     const name = "Welcome to moycalc!";

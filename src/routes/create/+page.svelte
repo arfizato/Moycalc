@@ -1,19 +1,19 @@
 <script lang="ts">
     import { browser } from "$app/environment";// @ts-ignore
-    function boy(e){
+    function handleMouseMove(e){
         if (browser){
             let oof= document.getElementById("formcontainer");
             let rect = oof?.getBoundingClientRect(),// @ts-ignore
-                x = e.clientX - rect?.left,// @ts-ignore
+                x = e.clientX - rect?.left ,// @ts-ignore
                 y = e.clientY - rect?.top;
-            oof?.style.setProperty("--mouse-x", `${e.clientX-250}px`)            
-            oof?.style.setProperty("--mouse-y", `${e.clientY-100}px`)
+            oof?.style.setProperty("--mouse-x", `${x}px`)
+            oof?.style.setProperty("--mouse-y", `${y}px`)
         }
     }
-    function utf8_to_b64(str:String) {
+    function utf8_to_b64(str:string) {
         return window.btoa(unescape(encodeURIComponent(str)));
     }
-    function b64_to_utf8(str:String) {
+    function b64_to_utf8(str:string) {
         return decodeURIComponent(escape(window.atob(str)));
     }
     interface RegimeMixte  {
@@ -39,9 +39,15 @@
 
     function createTemplate(){
         console.log("wawa")
+
     }
     function addRow(itIsRegmix:boolean){
         console.log("wawasqdq");
+        if (browser){
+            let oof= document.getElementById("formcontainer");            
+            let rect = oof?.getBoundingClientRect()// @ts-ignore
+            document.body.style.height=`${rect?.height+150}px`;
+        }
         if (itIsRegmix)
             regmix["subjects"]= [...regmix["subjects"], {name:"",coef:undefined}]
         else
@@ -57,7 +63,7 @@
 <!-- <h1 class="text-3xl font-bold underline">
     Welcome to Moycalc my bro
 </h1> -->
-<section id="main" class="w-full h-screen min-h-fit grid justify-items-center bg-black " on:mousemove={(e)=> boy(e)} >
+<section id="main" class="w-full h-screen min-h-fit grid justify-items-center bg-black " on:mousemove={(e)=> handleMouseMove(e)} >
     <div id="formcontainer" class="h-fit min-h-3/4 w-3/4 bg-zinc-800 rounded ">
         <form id="form" class="rounded flex flex-col justify-evenly   ">
             <h1 class="text-5xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">
@@ -135,7 +141,7 @@
 
     </div>
 </section>
-<section class="w-full h-20 bg-red-500" ></section>
+<!-- <section class="w-full h-20 bg-red-500" ></section> -->
 
 <style lang="postcss">
     /* @import url('https://fonts.googleapis.com/css2?family=Phudu:wght@300;400;500;600;700;800;900&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap'); */
