@@ -18,11 +18,11 @@
     }
     interface RegimeMixte  {
         coef: number[];
-        subjects: { name: string, coef: any }[];
+        subjects: { name: string, coef: any, grades: any[] }[];
     }
     interface ControleContinue  {
         coef: number[];
-        subjects: { name: string, coef: any }[];
+        subjects: { name: string, coef: any, grades: any[]  }[];
     }
     let regmix:RegimeMixte ={
             coef: [0.3, 0.7], 
@@ -49,10 +49,20 @@
             document.body.style.height=`${rect?.height+150}px`;
         }
         if (itIsRegmix)
-            regmix["subjects"]= [...regmix["subjects"], {name:"",coef:undefined}]
+            regmix["subjects"]= [...regmix["subjects"], {name:"",coef:undefined,grades:[,]}]
         else
-            cc["subjects"]= [...cc["subjects"], {name:"",coef:undefined}]
+            cc["subjects"]= [...cc["subjects"], {name:"",coef:undefined,grades:[,,] }]
 
+    }
+    function delRow(className: string,index: number){
+        console.log("wawa", className)
+        if (className[0]==="c"){
+            cc["subjects"].splice(index,1)
+            cc["subjects"]= cc["subjects"]
+        }else{
+            regmix["subjects"].splice(index,1)
+            regmix["subjects"]= regmix["subjects"]
+        }
     }
 </script>
 
@@ -87,9 +97,12 @@
                     <p class="capitalize text-xl ">name</p>
                     <p class="capitalize text-xl ">coefficient</p>
                     {#each regmix["subjects"] as subject, i}
-                        <p>{i}</p>
-                        <input type="text" bind:value={subject["name"]} id={"RMname"+i} class="bg-inherit p-1 border-b-2 border-b-zinc-800  ">
-                        <input type="number" bind:value={subject["coef"]} id={"RMcoef"+i} class="bg-inherit p-1 border-b-2 border-b-zinc-800  ">                        
+                        <!-- <p class="mt-4  ">❌{i}</p> -->
+                        <button class={"mt-4 regmix"+i} on:click|preventDefault={()=> delRow("regmix"+i,i)} >❌{i}</button>
+                        <input type="text" bind:value={subject["name"]} id={"RMname"+i} placeholder="subject"
+                            class={"mt-4 bg-inherit p-1 border-b-2 border-b-zinc-800  regmix"+i}>
+                        <input type="number" bind:value={subject["coef"]} id={"RMcoef"+i} placeholder="coef"
+                            class={"mt-4 bg-inherit p-1 border-b-2 border-b-zinc-800  regmix"+i}>                        
                     {/each}
                 </div>
                 <div class="w-full flex justify-center">
@@ -118,9 +131,11 @@
                     <p class="capitalize text-xl ">name</p>
                     <p class="capitalize text-xl ">coefficient</p>
                     {#each cc["subjects"] as subject, i}
-                        <p>{i}</p>
-                        <input type="text" bind:value={subject["name"]} id={"RMname"+i} class="bg-inherit p-1 border-b-2 border-b-zinc-800  ">
-                        <input type="number" bind:value={subject["coef"]} id={"RMcoef"+i} class="bg-inherit p-1 border-b-2 border-b-zinc-800  ">                        
+                        <button class={"mt-4 cc"+i} on:click|preventDefault={()=> delRow("cc"+i,i)} >❌{i}</button>
+                        <input type="text" bind:value={subject["name"]} id={"RMname"+i} placeholder="subject"
+                            class={"mt-4 bg-inherit p-1 border-b-2 border-b-zinc-800  cc"+i}>
+                        <input type="number" bind:value={subject["coef"]} id={"RMcoef"+i} placeholder="coef"
+                            class={"mt-4 bg-inherit p-1 border-b-2 border-b-zinc-800  cc"+i}>                        
                     {/each}
                 </div>
                 <div class="w-full flex justify-center">
