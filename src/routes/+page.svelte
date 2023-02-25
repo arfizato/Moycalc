@@ -1,6 +1,7 @@
 <script lang="ts">
     import { browser } from "$app/environment";// @ts-ignore
-    function boy(e){
+	import Swal from "sweetalert2";
+    function handleMouseMove(e:any){
         if (browser){
             let oof= document.getElementById("formcontainer");
             let rect = oof?.getBoundingClientRect(),// @ts-ignore
@@ -62,6 +63,11 @@
     ]
     function lemmeCalculate(){
         console.log("wawa")
+        if (browser){
+            Swal.fire("Right Now there's only one template. we'll add more soon").then(
+                ()=> window.location.href="/calculate?data=eyJuYW1lIjoiQkRBRCAxc3QgU2VtZXN0ZXIiLCJyZWdtaXgiOnsiY29lZiI6WzAuMywwLjddLCJzdWJqZWN0cyI6W3sibmFtZSI6IkFsZ2VicmUiLCJjb2VmIjoxLjUsImdyYWRlcyI6W251bGxdfSx7Im5hbWUiOiJhbmFseXNlIiwiY29lZiI6MS41LCJncmFkZXMiOltudWxsXX0seyJuYW1lIjoiYWxnbyIsImNvZWYiOjIsImdyYWRlcyI6W251bGxdfSx7Im5hbWUiOiJDIiwiY29lZiI6MS41LCJncmFkZXMiOltudWxsXX0seyJuYW1lIjoiU0UiLCJjb2VmIjoxLjUsImdyYWRlcyI6W251bGxdfSx7Im5hbWUiOiJTeXMgTG9naXF1ZSIsImNvZWYiOjIsImdyYWRlcyI6W251bGxdfSx7Im5hbWUiOiJMb2dpcXVlIEZvcm1lbGxlIiwiY29lZiI6MS41LCJncmFkZXMiOltudWxsXX0seyJuYW1lIjoiVE1NIiwiY29lZiI6MS41LCJncmFkZXMiOltudWxsXX1dfSwiY2MiOnsiY29lZiI6WzAuNCwwLjQsMC4yXSwic3ViamVjdHMiOlt7Im5hbWUiOiJFbmciLCJjb2VmIjoxLCJncmFkZXMiOltudWxsLG51bGxdfSx7Im5hbWUiOiJUZWNoIENvbW11bmljYXRpb24iLCJjb2VmIjoxLCJncmFkZXMiOltudWxsLG51bGxdfV19fQ=="
+            )            
+        }
     }
 </script>
 
@@ -72,7 +78,7 @@
 <!-- <h1 class="text-3xl font-bold underline">
     Welcome to Moycalc my bro
 </h1> -->
-<section id="main" class="w-full h-screen flex items-center justify-center bg-black " on:mousemove={(e)=> boy(e)} >
+<section id="main" class="w-full h-screen flex items-center justify-center bg-black " on:mousemove={(e)=> handleMouseMove(e)} >
     <div id="formcontainer" class="h-fit w-3/4 bg-zinc-800 rounded">
         <div id="form" class="rounded fflex flex-col justify-evenly pb-4 ">
 
