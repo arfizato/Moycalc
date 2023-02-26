@@ -71,13 +71,13 @@
                 document.getElementById(idArr[i])?.classList.remove("border-b-zinc-800")
                 document.getElementById(idArr[i])?.classList.add("border-b-red-400")
                 valid= false
-                console.log(idArr[i],valid)
+                //console.log(idArr[i],valid)
             }else{                
                 document.getElementById(idArr[i])?.classList.remove("border-b-red-400")
                 document.getElementById(idArr[i])?.classList.add("border-b-zinc-800")
             }
         });
-        console.log("return",valid)
+        //console.log("return",valid)
         return valid
     }
     async function createTemplate(){

@@ -62,7 +62,7 @@
         }
     ]
     function lemmeCalculate(){
-        console.log("wawa")
+        //console.log("wawa")
         if (browser){
             Swal.fire("Right Now there's only one template. we'll add more soon").then(
                 ()=> window.location.href="/calculate?data=eyJuYW1lIjoiQkRBRCAxc3QgU2VtZXN0ZXIiLCJyZWdtaXgiOnsiY29lZiI6WzAuMywwLjddLCJzdWJqZWN0cyI6W3sibmFtZSI6IkFsZ2VicmUiLCJjb2VmIjoxLjUsImdyYWRlcyI6W251bGxdfSx7Im5hbWUiOiJhbmFseXNlIiwiY29lZiI6MS41LCJncmFkZXMiOltudWxsXX0seyJuYW1lIjoiYWxnbyIsImNvZWYiOjIsImdyYWRlcyI6W251bGxdfSx7Im5hbWUiOiJDIiwiY29lZiI6MS41LCJncmFkZXMiOltudWxsXX0seyJuYW1lIjoiU0UiLCJjb2VmIjoxLjUsImdyYWRlcyI6W251bGxdfSx7Im5hbWUiOiJTeXMgTG9naXF1ZSIsImNvZWYiOjIsImdyYWRlcyI6W251bGxdfSx7Im5hbWUiOiJMb2dpcXVlIEZvcm1lbGxlIiwiY29lZiI6MS41LCJncmFkZXMiOltudWxsXX0seyJuYW1lIjoiVE1NIiwiY29lZiI6MS41LCJncmFkZXMiOltudWxsXX1dfSwiY2MiOnsiY29lZiI6WzAuNCwwLjQsMC4yXSwic3ViamVjdHMiOlt7Im5hbWUiOiJFbmciLCJjb2VmIjoxLCJncmFkZXMiOltudWxsLG51bGxdfSx7Im5hbWUiOiJUZWNoIENvbW11bmljYXRpb24iLCJjb2VmIjoxLCJncmFkZXMiOltudWxsLG51bGxdfV19fQ=="

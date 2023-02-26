@@ -3,7 +3,7 @@
     import { browser } from "$app/environment";// @ts-ignore
 	/** @type {import('./$types').PageData} */
     export let data:any;
-    console.log("data",data)
+    //console.log("data",data)
     function handleMouseMove(e:any){
         if (browser){
             let oof= document.getElementById("formcontainer");
