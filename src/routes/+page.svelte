@@ -98,6 +98,9 @@
             <!-- /* -------------------------------- calculate ------------------------------- */ -->
             <h1 class="text-xl py-4 text-white capitalize w-full text-center glookFont smerriweatherSansFont"> Calculate away! </h1>
             <div class="mx-8 grid grid-cols-3 text-base text-zinc-200 ">
+                <label for="uni">University</label>
+                <label for="sem">Semester</label>
+                <label for=""></label>
                 <select name="university" id="uni" bind:value={uniName} on:change={()=> semURL = ""}  
                     class="w-80 bg-transparent py-2 px-4 hover:ring-white hover:border-white ">
                     {#each data as uni }
