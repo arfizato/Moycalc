@@ -1,6 +1,7 @@
 <script lang="ts">
     import { browser } from "$app/environment";// @ts-ignore
-	import Swal from "sweetalert2";
+	// import Swal from "sweetalert2";
+    import ISAMM from "./ISAMM.json";
     function handleMouseMove(e:any){
         if (browser){
             let oof= document.getElementById("formcontainer");
@@ -18,55 +19,39 @@
     const data= [
         {
             name:"ISAMM",
-            semesters:[
-                {name:"BDAD Sem1",url:"/calculate/bdad-sem-1"},
-                {name:"BDAD Sem2",url:"/calculate/bdad-sem-2"},
-                {name:"BDAD Sem3",url:"/calculate/bdad-sem-3"},
-                {name:"BDAD Sem4",url:"/calculate/bdad-sem-4"},
-                {name:"BDAD Sem5",url:"/calculate/bdad-sem-5"},
-                
-                {name:"CM Sem1",url:"/calculate/CM-sem-1"},
-                {name:"CM Sem2",url:"/calculate/CM-sem-2"},
-                {name:"CM Sem3",url:"/calculate/CM-sem-3"},
-                {name:"CM Sem4",url:"/calculate/CM-sem-4"},
-                {name:"CM Sem5",url:"/calculate/CM-sem-5"},
-                
-                {name:"IM Sem1",url:"/calculate/IM-sem-1"},
-                {name:"IM Sem2",url:"/calculate/IM-sem-2"},
-                {name:"IM Sem3",url:"/calculate/IM-sem-3"},
-                {name:"IM Sem4",url:"/calculate/IM-sem-4"},
-                {name:"IM Sem5",url:"/calculate/IM-sem-5"},
-            ]
+            semesters: ISAMM
         },
-        {
-            name:"FST",
-            semesters:[
-                {name:"MPI Sem1",url:"/calculate/MPI-sem-1"},
-                {name:"MPI Sem2",url:"/calculate/MPI-sem-2"},
-                {name:"MPI Sem3",url:"/calculate/MPI-sem-3"},
-                {name:"MPI Sem4",url:"/calculate/MPI-sem-4"},
-                {name:"MPI Sem5",url:"/calculate/MPI-sem-5"},
+        // {
+        //     name:"FST",
+        //     semesters:[
+        //         {name:"MPI Sem1",url:"/calculate/MPI-sem-1"},
+        //         {name:"MPI Sem2",url:"/calculate/MPI-sem-2"},
+        //         {name:"MPI Sem3",url:"/calculate/MPI-sem-3"},
+        //         {name:"MPI Sem4",url:"/calculate/MPI-sem-4"},
+        //         {name:"MPI Sem5",url:"/calculate/MPI-sem-5"},
                 
-                {name:"FSI Sem1",url:"/calculate/FSI-sem-1"},
-                {name:"FSI Sem2",url:"/calculate/FSI-sem-2"},
-                {name:"FSI Sem3",url:"/calculate/FSI-sem-3"},
-                {name:"FSI Sem4",url:"/calculate/FSI-sem-4"},
-                {name:"FSI Sem5",url:"/calculate/FSI-sem-5"},
+        //         {name:"FSI Sem1",url:"/calculate/FSI-sem-1"},
+        //         {name:"FSI Sem2",url:"/calculate/FSI-sem-2"},
+        //         {name:"FSI Sem3",url:"/calculate/FSI-sem-3"},
+        //         {name:"FSI Sem4",url:"/calculate/FSI-sem-4"},
+        //         {name:"FSI Sem5",url:"/calculate/FSI-sem-5"},
                 
-                {name:"IFT Sem1",url:"/calculate/IFT-sem-1"},
-                {name:"IFT Sem2",url:"/calculate/IFT-sem-2"},
-                {name:"IFT Sem3",url:"/calculate/IFT-sem-3"},
-                {name:"IFT Sem4",url:"/calculate/IFT-sem-4"},
-                {name:"IFT Sem5",url:"/calculate/IFT-sem-5"},
-            ]
-        }
+        //         {name:"IFT Sem1",url:"/calculate/IFT-sem-1"},
+        //         {name:"IFT Sem2",url:"/calculate/IFT-sem-2"},
+        //         {name:"IFT Sem3",url:"/calculate/IFT-sem-3"},
+        //         {name:"IFT Sem4",url:"/calculate/IFT-sem-4"},
+        //         {name:"IFT Sem5",url:"/calculate/IFT-sem-5"},
+        //     ]
+        // }
     ]
+
     function lemmeCalculate(){
         //console.log("wawa")
         if (browser){
-            Swal.fire("Right Now there's only one template. we'll add more soon").then(
-                ()=> window.location.href="/calculate?data=eyJuYW1lIjoiQkRBRCAxc3QgU2VtZXN0ZXIiLCJyZWdtaXgiOnsiY29lZiI6WzAuMywwLjddLCJzdWJqZWN0cyI6W3sibmFtZSI6IkFsZ2VicmUiLCJjb2VmIjoxLjUsImdyYWRlcyI6W251bGxdfSx7Im5hbWUiOiJhbmFseXNlIiwiY29lZiI6MS41LCJncmFkZXMiOltudWxsXX0seyJuYW1lIjoiYWxnbyIsImNvZWYiOjIsImdyYWRlcyI6W251bGxdfSx7Im5hbWUiOiJDIiwiY29lZiI6MS41LCJncmFkZXMiOltudWxsXX0seyJuYW1lIjoiU0UiLCJjb2VmIjoxLjUsImdyYWRlcyI6W251bGxdfSx7Im5hbWUiOiJTeXMgTG9naXF1ZSIsImNvZWYiOjIsImdyYWRlcyI6W251bGxdfSx7Im5hbWUiOiJMb2dpcXVlIEZvcm1lbGxlIiwiY29lZiI6MS41LCJncmFkZXMiOltudWxsXX0seyJuYW1lIjoiVE1NIiwiY29lZiI6MS41LCJncmFkZXMiOltudWxsXX1dfSwiY2MiOnsiY29lZiI6WzAuNCwwLjQsMC4yXSwic3ViamVjdHMiOlt7Im5hbWUiOiJFbmciLCJjb2VmIjoxLCJncmFkZXMiOltudWxsLG51bGxdfSx7Im5hbWUiOiJUZWNoIENvbW11bmljYXRpb24iLCJjb2VmIjoxLCJncmFkZXMiOltudWxsLG51bGxdfV19fQ=="
-            )            
+            window.location.href=semURL
+            // Swal.fire("Right Now there's only one template. we'll add more soon").then(
+            //     ()=> 
+            // )            
         }
     }
 </script>
