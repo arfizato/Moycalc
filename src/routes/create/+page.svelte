@@ -53,7 +53,7 @@
                 document.querySelector(`#${str}name${i}`)?.classList.add("border-b-zinc-800")
             }
 
-            if (elem["coef"]===null){
+            if (elem["coef"]===undefined || elem["coef"]===null){
                 document.querySelector(`#${str}coef${i}`)?.classList.remove("border-b-zinc-800")
                 document.querySelector(`#${str}coef${i}`)?.classList.add("border-b-red-400")
                 valid= false
@@ -69,7 +69,7 @@
         let valid: Boolean= true;
         arr.forEach((elem:any,i:number) => {
             console.warn(elem)
-            if (elem===null){                
+            if (elem===null || elem===""){                
                 document.getElementById(idArr[i])?.classList.remove("border-b-zinc-800")
                 document.getElementById(idArr[i])?.classList.add("border-b-red-400")
                 valid= false
@@ -86,7 +86,8 @@
         let isInputValid: Boolean = (regmix["subjects"].length>0 || cc["subjects"].length>0)
                                     &&isSubjectValid(regmix["subjects"],"RM")&&isSubjectValid(cc["subjects"],"CC")
                                     &&isCoefValid(regmix["coef"], regmixCoefNames)&&isCoefValid(cc["coef"], ccCoefNames)
-        console.error("isvalid",isInputValid)
+        // console.error("isvalid",isInputValid)
+        console.log('CreateTemplate()');
         if (!isInputValid) 
             return Swal.fire({
                 title: 'Error!',
@@ -151,12 +152,31 @@
 
     }
     function delRow(className: string,index: number){
+        let elemfocus
+        if (browser){
+            elemfocus= document.querySelector("button:focus");
+            console.log("delRow()",!elemfocus,elemfocus)
+            if (!!elemfocus) return
+        }
         if (className[0]==="c"){
             cc["subjects"].splice(index,1)
             cc["subjects"]= cc["subjects"]
         }else{
             regmix["subjects"].splice(index,1)
             regmix["subjects"]= regmix["subjects"]
+        }
+    }
+    function handleKeyDown(e:any){
+        let btnfocus;
+        if (browser){
+            btnfocus= document.querySelector("button:focus");
+        }
+        // console.log(e.key,btnfocus,e)
+        if (e.key ==="Enter" ){
+            if (!btnfocus){
+                createTemplate()
+            }
+            
         }
     }
 </script>
@@ -170,7 +190,7 @@
 </h1> -->
 <section id="main" class="w-full h-screen min-h-fit grid justify-items-center bg-black " on:mousemove={(e)=> handleMouseMove(e)} >
     <div id="formcontainer" class="h-fit min-h-3/4 w-3/4 bg-zinc-800 rounded mt-24">
-        <form id="form" class="rounded flex flex-col justify-evenly   ">
+        <form id="form" class="rounded flex flex-col justify-evenly  " on:keypress={(event)=> handleKeyDown(event)}>
             <h1 class="text-3xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">
                 Create Your own template
             </h1>
@@ -195,7 +215,10 @@
                         <!-- <p class="mt-4  ">❌{i}</p> -->
                         <!-- <button class={"mt-4 regmix"+i} on:click|preventDefault={()=> delRow("regmix"+i,i)} >❌{i}</button> -->
                         <p class={"mt-4 w-3/4 grid grid-col text-center regmix"+i} >
-                            <button on:click|preventDefault={()=> delRow("regmix"+i,i)}  class="absolute my-auto hover:scale-125 hover:saturate-0 transition-all duration-200 ">❌</button>
+                            <button on:click|preventDefault={()=> delRow("regmix"+i,i)}  
+                                class="absolute my-auto hover:scale-125 hover:saturate-0 transition-all duration-200 ">
+                                ❌
+                            </button>
                             <span class="w-full text-center blocks " >{i}</span>
                         </p>
                         <input type="text" bind:value={subject["name"]} id={"RMname"+i} placeholder="subject"
@@ -207,7 +230,8 @@
                 <div class="w-full flex justify-center">
                     <button on:click|preventDefault={() => addRow(true)}
                         class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-base mt-4 mb-8 py-2 px-8 
-                            rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 ">
+                            rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 
+                            focus:bg-zinc-200 focus:text-black ">
                         ➕ADD
                     </button>
                 </div>                
@@ -231,7 +255,10 @@
                     <p class="capitalize text-base ">coefficient</p>
                     {#each cc["subjects"] as subject, i}
                         <p class={"mt-4 w-3/4 grid grid-col text-center cc"+i} >
-                            <button on:click|preventDefault={()=> delRow("cc"+i,i)}  class="absolute my-auto hover:scale-125 hover:saturate-0 hover:brightness-200 transition-all duration-200 ">❌</button>
+                            <button on:click|preventDefault={()=> delRow("cc"+i,i)}  
+                                class="absolute my-auto hover:scale-125 hover:saturate-0 hover:brightness-200 transition-all duration-200 ">
+                                ❌
+                            </button>
                             <span class="w-full text-center blocks " >{i}</span>
                         </p>
                         <input type="text" bind:value={subject["name"]} id={"CCname"+i} placeholder="subject"
@@ -243,7 +270,8 @@
                 <div class="w-full flex justify-center">
                     <button on:click|preventDefault={() => addRow(false)}
                         class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-base mt-4 mb-8 py-2 px-8 
-                            rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 ">
+                            rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 
+                            focus:bg-zinc-200 focus:text-black ">
                         ➕ADD
                     </button>
                 </div>                
@@ -251,7 +279,8 @@
 
             <button on:click|preventDefault={createTemplate}
                 class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-base w-max mx-auto mt-4 mb-8 py-2 px-12 
-                    rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 ">
+                    rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 
+                    focus:bg-zinc-200 focus:text-black ">
                 I'm Done!
             </button>
         </form>
