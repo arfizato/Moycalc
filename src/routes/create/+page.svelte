@@ -28,13 +28,13 @@
     let regmix:RegMixControleContiue ={
             coef: [0.3, 0.7], 
             subjects: [
-                {name:"sqdqs",coef:1,grades:[,]},{name:"sqdqs",coef:1,grades:[,]}//,{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1}
+                // {name:"sqdqs",coef:1,grades:[,]},{name:"sqdqs",coef:1,grades:[,]}//,{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1}
             ]
         }, 
         cc:RegMixControleContiue ={
             coef: [0.4, 0.4, 0.2], 
             subjects: [
-                {name:"sqdqs",coef:1,grades:[,,]},{name:"sqdqs",coef:1,grades:[,,]}
+                // {name:"sqdqs",coef:1,grades:[,,]},{name:"sqdqs",coef:1,grades:[,,]}
             ]
         },
         name="",
