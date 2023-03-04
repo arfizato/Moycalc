@@ -193,7 +193,11 @@
                     <p class="capitalize text-base ">coefficient</p>
                     {#each regmix["subjects"] as subject, i}
                         <!-- <p class="mt-4  ">❌{i}</p> -->
-                        <button class={"mt-4 regmix"+i} on:click|preventDefault={()=> delRow("regmix"+i,i)} >❌{i}</button>
+                        <!-- <button class={"mt-4 regmix"+i} on:click|preventDefault={()=> delRow("regmix"+i,i)} >❌{i}</button> -->
+                        <p class={"mt-4 w-3/4 grid grid-col text-center regmix"+i} >
+                            <button on:click|preventDefault={()=> delRow("regmix"+i,i)}  class="absolute my-auto hover:scale-125 hover:saturate-0 transition-all duration-200 ">❌</button>
+                            <span class="w-full text-center blocks " >{i}</span>
+                        </p>
                         <input type="text" bind:value={subject["name"]} id={"RMname"+i} placeholder="subject"
                             class={"mt-4 bg-inherit p-1 border-b-2 border-b-zinc-800  regmix"+i}>
                         <input type="number" bind:value={subject["coef"]} id={"RMcoef"+i} placeholder="coef"
@@ -226,9 +230,9 @@
                     <p class="capitalize text-base ">name</p>
                     <p class="capitalize text-base ">coefficient</p>
                     {#each cc["subjects"] as subject, i}
-                        <p class={"mt-4 w-3/4 grid grid-col cc"+i} >
-                            <button on:click|preventDefault={()=> delRow("cc"+i,i)} >❌</button>
-                            <span class="w-full text-center " >{i}</span>
+                        <p class={"mt-4 w-3/4 grid grid-col text-center cc"+i} >
+                            <button on:click|preventDefault={()=> delRow("cc"+i,i)}  class="absolute my-auto hover:scale-125 hover:saturate-0 hover:brightness-200 transition-all duration-200 ">❌</button>
+                            <span class="w-full text-center blocks " >{i}</span>
                         </p>
                         <input type="text" bind:value={subject["name"]} id={"CCname"+i} placeholder="subject"
                             class={"mt-4 bg-inherit p-1 border-b-2 border-b-zinc-800  cc"+i}>
