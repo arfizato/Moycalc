@@ -72,7 +72,7 @@
 </script>
 
 <svelte:head>
-    <title>Home Sweet Home</title>
+    <title>Welcome - Moycalc</title>
 </svelte:head>
 
 <!-- <h1 class="text-3xl font-bold underline">
@@ -83,20 +83,21 @@
         <div id="form" class="rounded fflex flex-col justify-evenly pb-4 ">
 
             <!-- /* ------------------------------ introduction ------------------------------ */ -->
-            <h1 class="text-5xl py-4 text-white capitalize w-full text-center glookFont smerriweatherSansFont"> {name} </h1>
-            <p class="text-zinc-200 text-xl mx-8 my-6 z-10 relative text-left srobotoFont">
+            <h1 class="text-3xl py-4 text-white capitalize w-full text-center glookFont smerriweatherSansFont"> {name} </h1>
+            <p class="text-zinc-200 text-base mx-8 my-6 z-10 relative text-left srobotoFont">
                 Hello friend, this website is the predecessor of <a id="descLink" target="_blank" rel="noreferrer" href="https://moycalc.netlify.app">Moyenne-ISAMM</a> 
                 and I built it to make it easier for university students to calculate their semester averages. You can check out the source code on 
                 <a id="descLink"target="_blank" rel="noreferrer" href="https://github.com/arfizato/Moycalc">my GitHub</a>.
                 <br> <br>
-                You can check if the semester you want to calculate for is already registered or you could be so kind by 
-                <a id="descLink" href="/create">creating</a> one and submitting it. 
+                <!-- You can check if the semester you want to calculate for is already registered or you could be so kind by  -->
+                You can check if there is a template ready for your semester. Otherwise, you can try
+                <a id="descLink" href="/create">creating</a> one and submitting it or sharing it so that others can use it. 
                 
             </p>
 
             <!-- /* -------------------------------- calculate ------------------------------- */ -->
-            <h1 class="text-4xl py-4 text-white capitalize w-full text-center glookFont smerriweatherSansFont"> Calculate away! </h1>
-            <div class="mx-8 grid grid-cols-3 text-2xl text-zinc-200 ">
+            <h1 class="text-xl py-4 text-white capitalize w-full text-center glookFont smerriweatherSansFont"> Calculate away! </h1>
+            <div class="mx-8 grid grid-cols-3 text-base text-zinc-200 ">
                 <select name="university" id="uni" bind:value={uniName} on:change={()=> semURL = ""}  
                     class="w-80 bg-transparent py-2 px-4 hover:ring-white hover:border-white ">
                     {#each data as uni }
@@ -125,17 +126,17 @@
             </div>
 
             <!-- /* ----------------------------- create template ---------------------------- */ -->
-            <h1 class="text-4xl py-4 mt-6 text-white capitalize w-full text-center glookFont smerriweatherSansFont"> or </h1>
+            <h1 class="text-xl py-4 mt-6 text-white capitalize w-full text-center glookFont smerriweatherSansFont"> or </h1>
             <div class="w-full flex justify-center ">
-                <a href="/create" class="py-2 px-48 text-2xl bg-transparent border-2 border-zinc-200 text-zinc-200 
+                <a href="/create" class="py-2 px-48 text-base bg-transparent border-2 border-zinc-200 text-zinc-200 
                     hover:bg-zinc-200 hover:text-zinc-900 transition-all duration-300 relative z-10 robotoFont">
                     Create a Template
                 </a>  
             </div>
 
             <!-- /* -------------------------------- reach out ------------------------------- */ -->
-            <h1 class="text-4xl py-4 mt-6 text-white capitalize w-full text-center glookFont smerriweatherSansFont"> reach out! </h1>
-            <p class="text-zinc-200 text-xl mx-8 my-6 z-10 relative text-left srobotoFont">
+            <h1 class="text-xl py-4 mt-6 text-white capitalize w-full text-center glookFont smerriweatherSansFont"> reach out! </h1>
+            <p class="text-zinc-200 text-base mx-8 my-6 z-10 relative text-left srobotoFont">
                 My name is Ibrahim Doghri(Arfizato), I'm a Big Data & Data Analysis student studying in ISAMM. If you have any feedback or suggestions,
                 you can find me on:
                 <a id="descLink" class="merriweatherSansFont" target="_blank" rel="noreferrer" href="https://facebook.com/arfizato">Facebook</a>, 

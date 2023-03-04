@@ -28,12 +28,14 @@
     let regmix:RegMixControleContiue ={
             coef: [0.3, 0.7], 
             subjects: [
-                //{name:"sqdqs",coef:1,grades:[,]},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1}
+                {name:"sqdqs",coef:1,grades:[,]},{name:"sqdqs",coef:1,grades:[,]}//,{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1}
             ]
         }, 
         cc:RegMixControleContiue ={
             coef: [0.4, 0.4, 0.2], 
-            subjects: []
+            subjects: [
+                {name:"sqdqs",coef:1,grades:[,,]},{name:"sqdqs",coef:1,grades:[,,]}
+            ]
         },
         name="",
         regmixCoefNames=["DS","Exam"],
@@ -160,22 +162,22 @@
 </script>
 
 <svelte:head>
-    <title>Home Sweet Home</title>
+    <title>Create Templates - Moycalc </title>
 </svelte:head>
 
-<!-- <h1 class="text-3xl font-bold underline">
+<!-- <h1 class="text-xl font-bold underline">
     Welcome to Moycalc my bro
 </h1> -->
 <section id="main" class="w-full h-screen min-h-fit grid justify-items-center bg-black " on:mousemove={(e)=> handleMouseMove(e)} >
     <div id="formcontainer" class="h-fit min-h-3/4 w-3/4 bg-zinc-800 rounded mt-24">
         <form id="form" class="rounded flex flex-col justify-evenly   ">
-            <h1 class="text-5xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">
+            <h1 class="text-3xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">
                 Create Your own template
             </h1>
             <div id="regmix" class="my-4 w-full " >
-                <h2 class="text-4xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Regime Mixte</h2>
-                <h2 class="text-2xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Coef</h2>
-                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-xl text-white  ">                    
+                <h2 class="text-xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Regime Mixte</h2>
+                <h2 class="text-lg py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Coef</h2>
+                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-base text-white  ">                    
                     {#each regmix["coef"] as coef, i}
                         <div class="flex flex-col">
                             <label for={regmixCoefNames[i]} >{regmixCoefNames[i]}</label>
@@ -184,11 +186,11 @@
                     {/each}
                 </div>
 
-                <h2 class="text-2xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Subjects</h2>
-                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-xl text-white  ">                    
-                    <p class="capitalize text-xl ">index</p>
-                    <p class="capitalize text-xl ">name</p>
-                    <p class="capitalize text-xl ">coefficient</p>
+                <h2 class="text-lg py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Subjects</h2>
+                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-base text-white  ">                    
+                    <p class="capitalize text-base ">index</p>
+                    <p class="capitalize text-base ">name</p>
+                    <p class="capitalize text-base ">coefficient</p>
                     {#each regmix["subjects"] as subject, i}
                         <!-- <p class="mt-4  ">❌{i}</p> -->
                         <button class={"mt-4 regmix"+i} on:click|preventDefault={()=> delRow("regmix"+i,i)} >❌{i}</button>
@@ -200,16 +202,16 @@
                 </div>
                 <div class="w-full flex justify-center">
                     <button on:click|preventDefault={() => addRow(true)}
-                        class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-xl mt-4 mb-8 py-2 px-8 
+                        class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-base mt-4 mb-8 py-2 px-8 
                             rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 ">
                         ➕ADD
                     </button>
                 </div>                
             </div>
             <div id="cc" class="my-4 w-full " >
-                <h2 class="text-4xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Conrôle continue</h2>
-                <h2 class="text-2xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Coef</h2>
-                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-xl text-white  ">                    
+                <h2 class="text-xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Conrôle continue</h2>
+                <h2 class="text-lg py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Coef</h2>
+                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-base text-white  ">                    
                     {#each cc["coef"] as coef, i}
                         <div class="flex flex-col">
                             <label for={ccCoefNames[i]} >{ccCoefNames[i]}</label>
@@ -218,13 +220,16 @@
                     {/each}
                 </div>
 
-                <h2 class="text-2xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Subjects</h2>
-                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-xl text-white  ">                    
-                    <p class="capitalize text-xl ">index</p>
-                    <p class="capitalize text-xl ">name</p>
-                    <p class="capitalize text-xl ">coefficient</p>
+                <h2 class="text-lg py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Subjects</h2>
+                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-base text-white  ">                    
+                    <p class="capitalize text-base ">index</p>
+                    <p class="capitalize text-base ">name</p>
+                    <p class="capitalize text-base ">coefficient</p>
                     {#each cc["subjects"] as subject, i}
-                        <button class={"mt-4 cc"+i} on:click|preventDefault={()=> delRow("cc"+i,i)} >❌{i}</button>
+                        <p class={"mt-4 w-3/4 grid grid-col cc"+i} >
+                            <button on:click|preventDefault={()=> delRow("cc"+i,i)} >❌</button>
+                            <span class="w-full text-center " >{i}</span>
+                        </p>
                         <input type="text" bind:value={subject["name"]} id={"CCname"+i} placeholder="subject"
                             class={"mt-4 bg-inherit p-1 border-b-2 border-b-zinc-800  cc"+i}>
                         <input type="number" bind:value={subject["coef"]} id={"CCcoef"+i} placeholder="coef"
@@ -233,7 +238,7 @@
                 </div>
                 <div class="w-full flex justify-center">
                     <button on:click|preventDefault={() => addRow(false)}
-                        class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-xl mt-4 mb-8 py-2 px-8 
+                        class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-base mt-4 mb-8 py-2 px-8 
                             rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 ">
                         ➕ADD
                     </button>
@@ -241,7 +246,7 @@
             </div>
 
             <button on:click|preventDefault={createTemplate}
-                class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-xl w-max mx-auto mt-4 mb-8 py-2 px-12 
+                class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-base w-max mx-auto mt-4 mb-8 py-2 px-12 
                     rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 ">
                 I'm Done!
             </button>

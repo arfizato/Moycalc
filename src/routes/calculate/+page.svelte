@@ -92,7 +92,7 @@
 </script>
 
 <svelte:head>
-    <title>Home Sweet Home</title>
+    <title>{name} - Moycalc</title>
 </svelte:head>
 
 <!-- <h1 class="text-3xl font-bold underline">
@@ -102,11 +102,11 @@
 <section id="main" class="w-full h-screen flex items-center justify-center bg-black " on:mousemove={(e)=> handleMouseMove(e)} >
     <div id="formcontainer" class="h-fit min-h-3/4 w-3/4 bg-zinc-800 rounded">
         <form id="form" class="rounded flex flex-col justify-evenly   ">
-            <h1 class="text-5xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">
+            <h1 class="text-3xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">
                 {name}</h1>
             <div id="regmix" class="my-4 " >
                 {#each regmix["subjects"] as subject, i }
-                    <div data-coef={subject.coef} class="mx-4 my-2 grid items-center justify-items-center grid-cols-4 text-xl text-white srobotoFont">
+                    <div data-coef={subject.coef} class="mx-4 my-2 grid items-center justify-items-center grid-cols-4 text-base text-white srobotoFont">
                         <p class="w-3/4 text-start " >
                             {subject.name}<span class="text-lg text-zinc-400 ">{` (${subject.coef})`}</span>                        
                         </p>
@@ -120,7 +120,7 @@
             </div>
             <div id="cc" class="my-4 " >
                 {#each cc["subjects"] as subject, i }
-                    <div data-coef={subject.coef} class="mx-4 my-2 grid items-center justify-items-center grid-cols-4 text-xl text-white srobotoFont">
+                    <div data-coef={subject.coef} class="mx-4 my-2 grid items-center justify-items-center grid-cols-4 text-base text-white srobotoFont">
                         <p class="w-3/4 text-start " >
                             {subject.name}<span class="text-lg text-zinc-400 ">{` (${subject.coef})`}</span>                        
                         </p>
@@ -134,7 +134,7 @@
                 {/each}
             </div>
             <button on:click|preventDefault={moyCalculate}
-                class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-xl w-max mx-auto mt-4 mb-8 py-2 px-8 
+                class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-base w-max mx-auto mt-4 mb-8 py-2 px-8 
                 rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 robotoFont">
                 Submit</button>
         </form>
