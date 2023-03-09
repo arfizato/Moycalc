@@ -5,6 +5,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    background-color: #000;
+    min-width: 100vw;
+    /* height: max-content; */
+    min-height: 100vh;
+}
+html{
+    background-color: #000;
+}
 
 .merriweatherSansFont{
     font-family: 'Merriweather Sans', sans-serif;

@@ -2,9 +2,18 @@
     import Swal from 'sweetalert2'
     import { browser } from "$app/environment";// @ts-ignore
 	import { validate_component } from 'svelte/internal';
+    import { onMount } from 'svelte/internal';
+
+    onMount(()=>{
+        
+        let oof= document.getElementById("createFormContainer");            
+        let rect = oof?.getBoundingClientRect()// @ts-ignore
+        document.body.style.height=`${rect?.height+150}px`;
+    })
+
     function handleMouseMove(e:any){
         if (browser){
-            let oof= document.getElementById("formcontainer");
+            let oof= document.getElementById("createFormContainer");
             let rect = oof?.getBoundingClientRect(),// @ts-ignore
                 x = e.clientX - rect?.left ,// @ts-ignore
                 y = e.clientY - rect?.top;
@@ -136,7 +145,7 @@
     }
     function addRow(itIsRegmix:boolean){
         if (browser){
-            let oof= document.getElementById("formcontainer");            
+            let oof= document.getElementById("createFormContainer");            
             let rect = oof?.getBoundingClientRect()// @ts-ignore
             document.body.style.height=`${rect?.height+150}px`;
             let newElem;
@@ -188,8 +197,8 @@
 <!-- <h1 class="text-xl font-bold underline">
     Welcome to Moycalc my bro
 </h1> -->
-<section id="main" class="w-full h-screen min-h-fit grid justify-items-center bg-black " on:mousemove={(e)=> handleMouseMove(e)} >
-    <div id="formcontainer" class="h-fit min-h-3/4 w-3/4 bg-zinc-800 rounded mt-24">
+<section id="createMain" class="w-full h-screen min-h-fit grid justify-items-center bg-black " on:mousemove={(e)=> handleMouseMove(e)} >
+    <div id="createFormContainer" class="h-fit min-h-3/4 w-3/4 bg-zinc-800 rounded mt-24">
         <form id="form" class="rounded flex flex-col justify-evenly  " on:keypress={(event)=> handleKeyDown(event)}>
             <h1 class="text-3xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">
                 Create Your own template
@@ -197,17 +206,17 @@
             <div id="regmix" class="my-4 w-full " >
                 <h2 class="text-xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Regime Mixte</h2>
                 <h2 class="text-lg py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Coef</h2>
-                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-base text-white  ">                    
+                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-base text-white gap-2 ">                    
                     {#each regmix["coef"] as coef, i}
                         <div class="flex flex-col">
                             <label for={regmixCoefNames[i]} >{regmixCoefNames[i]}</label>
-                            <input type="number" bind:value={coef} id={regmixCoefNames[i]} class="bg-inherit p-1 border-b-2 border-b-zinc-800  ">
+                            <input type="number" bind:value={coef} id={regmixCoefNames[i]} class="bg-inherit p-1 border-b-2 border-b-zinc-800 w-full">
                         </div>
                     {/each}
                 </div>
 
                 <h2 class="text-lg py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Subjects</h2>
-                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-base text-white  ">                    
+                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-base text-white gap-2 ">                    
                     <p class="capitalize text-base ">index</p>
                     <p class="capitalize text-base ">name</p>
                     <p class="capitalize text-base ">coefficient</p>
@@ -222,9 +231,9 @@
                             <span class="w-full text-center blocks " >{i}</span>
                         </p>
                         <input type="text" bind:value={subject["name"]} id={"RMname"+i} placeholder="subject"
-                            class={"mt-4 bg-inherit p-1 border-b-2 border-b-zinc-800  regmix"+i}>
+                            class={"w-full mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  regmix"+i}>
                         <input type="number" bind:value={subject["coef"]} id={"RMcoef"+i} placeholder="coef"
-                            class={"mt-4 bg-inherit p-1 border-b-2 border-b-zinc-800  regmix"+i}>                        
+                            class={"w-full mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  regmix"+i}>                        
                     {/each}
                 </div>
                 <div class="w-full flex justify-center">
@@ -239,17 +248,17 @@
             <div id="cc" class="my-4 w-full " >
                 <h2 class="text-xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Conrôle continue</h2>
                 <h2 class="text-lg py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Coef</h2>
-                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-base text-white  ">                    
+                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-base text-white gap-2 ">                    
                     {#each cc["coef"] as coef, i}
                         <div class="flex flex-col">
                             <label for={ccCoefNames[i]} >{ccCoefNames[i]}</label>
-                            <input type="number" bind:value={coef} id={ccCoefNames[i]} class="bg-inherit p-1 border-b-2 border-b-zinc-800  ">
+                            <input type="number" bind:value={coef} id={ccCoefNames[i]} class="bg-inherit p-1 border-b-2 border-b-zinc-800 w-full ">
                         </div>
                     {/each}
                 </div>
 
                 <h2 class="text-lg py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">Subjects</h2>
-                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-base text-white  ">                    
+                <div class="mx-4 my-2 grid items-center justify-items-center grid-cols-3 text-base text-white gap-2 ">                    
                     <p class="capitalize text-base ">index</p>
                     <p class="capitalize text-base ">name</p>
                     <p class="capitalize text-base ">coefficient</p>
@@ -262,9 +271,9 @@
                             <span class="w-full text-center blocks " >{i}</span>
                         </p>
                         <input type="text" bind:value={subject["name"]} id={"CCname"+i} placeholder="subject"
-                            class={"mt-4 bg-inherit p-1 border-b-2 border-b-zinc-800  cc"+i}>
+                            class={"w-full mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  cc"+i}>
                         <input type="number" bind:value={subject["coef"]} id={"CCcoef"+i} placeholder="coef"
-                            class={"mt-4 bg-inherit p-1 border-b-2 border-b-zinc-800  cc"+i}>                        
+                            class={"w-full mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  cc"+i}>                        
                     {/each}
                 </div>
                 <div class="w-full flex justify-center">
@@ -292,16 +301,8 @@
 <style lang="postcss">
     /* @import url('https://fonts.googleapis.com/css2?family=Phudu:wght@300;400;500;600;700;800;900&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap'); */
 
-    :global(html) {
-        background-color: theme(colors.black);        
-    }
-    :global(body){
-        height: fit-content;
-        /* padding:5em 0; */
-        margin: 5em 0;
-    }
-    #main{
-        #formcontainer{
+    #createMain{
+        #createFormContainer{
             position: relative;
             /* margin: 50px; */
             &::before{
@@ -370,7 +371,7 @@
             }
         }
         &:hover{
-            #formcontainer{
+            #createFormContainer{
                 &::before{
                     opacity: 1;
                 }
