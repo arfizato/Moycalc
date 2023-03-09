@@ -8,7 +8,7 @@
         
         let oof= document.getElementById("createFormContainer");            
         let rect = oof?.getBoundingClientRect()// @ts-ignore
-        document.body.style.height=`${rect?.height+150}px`;
+        document.body.style.height=`${rect?.height+200}px`;
     })
 
     function handleMouseMove(e:any){
@@ -147,7 +147,7 @@
         if (browser){
             let oof= document.getElementById("createFormContainer");            
             let rect = oof?.getBoundingClientRect()// @ts-ignore
-            document.body.style.height=`${rect?.height+150}px`;
+            document.body.style.height=`${rect?.height+200}px`;
             let newElem;
             if (itIsRegmix){
                 regmix["subjects"]= [...regmix["subjects"], {name:"",coef:undefined,grades:[,]}]// @ts-ignore
@@ -200,7 +200,7 @@
 <section id="createMain" class="w-full h-screen min-h-fit grid justify-items-center bg-black " on:mousemove={(e)=> handleMouseMove(e)} >
     <div id="createFormContainer" class="h-fit min-h-3/4 w-3/4 bg-zinc-800 rounded mt-24">
         <form id="form" class="rounded flex flex-col justify-evenly  " on:keypress={(event)=> handleKeyDown(event)}>
-            <h1 class="text-3xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">
+            <h1 class="text-3xl py-4 px-6 text-white uppercase w-full text-center glookFont merriweatherSansFont">
                 Create Your own template
             </h1>
             <div id="regmix" class="my-4 w-full " >
@@ -231,9 +231,9 @@
                             <span class="w-full text-center blocks " >{i}</span>
                         </p>
                         <input type="text" bind:value={subject["name"]} id={"RMname"+i} placeholder="subject"
-                            class={"w-full mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  regmix"+i}>
+                            class={"w-full md:w-3/4 mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  regmix"+i}>
                         <input type="number" bind:value={subject["coef"]} id={"RMcoef"+i} placeholder="coef"
-                            class={"w-full mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  regmix"+i}>                        
+                            class={"w-full md:w-3/4 mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  regmix"+i}>                        
                     {/each}
                 </div>
                 <div class="w-full flex justify-center">
@@ -271,9 +271,9 @@
                             <span class="w-full text-center blocks " >{i}</span>
                         </p>
                         <input type="text" bind:value={subject["name"]} id={"CCname"+i} placeholder="subject"
-                            class={"w-full mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  cc"+i}>
+                            class={"w-full md:w-3/4 mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  cc"+i}>
                         <input type="number" bind:value={subject["coef"]} id={"CCcoef"+i} placeholder="coef"
-                            class={"w-full mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  cc"+i}>                        
+                            class={"w-full md:w-3/4 mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  cc"+i}>                        
                     {/each}
                 </div>
                 <div class="w-full flex justify-center">

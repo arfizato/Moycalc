@@ -112,7 +112,7 @@
 <section id="main" class="w-full h-screen min-h-fit grid justify-items-center bg-black " on:mousemove={(e)=> handleMouseMove(e)} >
     <div id="formcontainer" class="h-fit min-h-3/4 w-3/4 bg-zinc-800 rounded mt-24">
         <form id="form" class="rounded flex flex-col justify-evenly   ">
-            <h1 class="text-3xl py-4 text-white uppercase w-full text-center glookFont merriweatherSansFont">
+            <h1 class="text-3xl py-4 px-6 text-white uppercase w-full text-center glookFont merriweatherSansFont">
                 {name}</h1>
             <div id="regmix" class="my-4 " >
                 {#each regmix["subjects"] as subject, i }
