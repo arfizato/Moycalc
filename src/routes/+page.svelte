@@ -78,7 +78,7 @@
             <!-- /* ------------------------------ introduction ------------------------------ */ -->
             <h1 class="text-3xl py-4 px-6 text-white capitalize w-full text-center glookFont smerriweatherSansFont"> {name} </h1>
             <p class="text-zinc-200 text-base mx-8 my-6 z-10 relative text-left srobotoFont">
-                Hello friend, this website is the predecessor of <a id="descLink" target="_blank" rel="noreferrer" href="https://moycalc.netlify.app">Moyenne-ISAMM</a> 
+                Hello friend, this website is the successor of <a id="descLink" target="_blank" rel="noreferrer" href="https://moycalc.netlify.app">Moyenne-ISAMM</a> 
                 and I built it to make it easier for university students to calculate their semester averages. You can check out the source code on 
                 <a id="descLink"target="_blank" rel="noreferrer" href="https://github.com/arfizato/Moycalc">my GitHub</a>.
                 <br> <br>
