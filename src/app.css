@@ -10,6 +10,7 @@ body{
     min-width: 100vw;
     /* height: max-content; */
     min-height: 100vh;
+    overflow-x: hidden;
 }
 html{
     background-color: #000;
