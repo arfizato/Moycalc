@@ -97,7 +97,21 @@
             })
         let{ coefTotal, gradesTotal}= calcCategory(regmix);
         ({coefTotal,gradesTotal}= calcCategory(cc,coefTotal,gradesTotal));
-        Swal.fire(`Moyenne:${gradesTotal/coefTotal}`)
+        const moyenne:number = Math.round((gradesTotal/coefTotal) * 100) / 100;
+        // Swal.fire(`Moyenne:${gradesTotal/coefTotal}`)
+        Swal.fire({
+                title: moyenne >= 10 ? 'Congratulations!': "Better Luck Next Time",
+                text: `${moyenne}`,
+                icon: moyenne >= 10 ? 'success': 'info',
+                confirmButtonText: 'Thank you!',
+                background: "#111",
+                backdrop:"#00000070",
+                color: "#fff",
+                buttonsStyling: false,
+                customClass:{
+                    confirmButton:"bg-transparent text-white py-2 px-4 hover:bg-white hover:text-black transition-all duration-200 border-2 border-white rounded-md",
+                }
+            })
     }
 </script>
 
