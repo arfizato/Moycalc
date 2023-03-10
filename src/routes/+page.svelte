@@ -93,15 +93,15 @@
             <div class="mx-8 grid grid-cols-1 gap-2 text-base text-zinc-200 md:grid-cols-3">
                 <label for="uni"><p>University</p>
                     <select name="university" id="uni" bind:value={uniName} on:change={()=> semURL = ""}  
-                        class="w-full bg-transparent py-2 px-4 hover:ring-white hover:border-white ">
+                        class="w-full bg-transparent py-2 px-4 hover:ring-white hover:border-white hover:ring-1 focus:ring-2 focus:ring-white  border-[1px]  ">
                         {#each data as uni }
                             <option value={uni.name} class="bg-zinc-800 text-zinc-200 " >{uni.name}</option>
                         {/each}
                     </select>
                 </label>
                 <label for="sem"><p>Semester</p>
-                    <select name="semester" id="sem" bind:value={semURL}  
-                        class="w-full bg-transparent py-2 px-4 hover:ring-white hover:border-white ">
+                    <select name="semester" id="sem" bind:value={semURL} 
+                        class="w-full bg-transparent py-2 px-4 hover:ring-white hover:border-white hover:ring-1 focus:ring-2 focus:ring-white  border-[1px] ">
                         {#each data as uni}
                             {#if uniName === uni.name }
                                 {#each uni.semesters as sem}                                
