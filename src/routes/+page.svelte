@@ -170,7 +170,7 @@
     #main{
         #formcontainer{
             position: relative;
-            margin: 50px;
+            /* margin: 50px; */
             &::before{
                 border-radius: 0.25rem;
                 content: "";
