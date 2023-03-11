@@ -3,11 +3,16 @@
     import { browser } from "$app/environment";// @ts-ignore
     import { onMount } from 'svelte/internal';
 
+    function resizeBody(){        
+        if (browser){
+            let oof= document.getElementById("createFormContainer");            
+            let rect = oof?.getBoundingClientRect()// @ts-ignore
+            document.body.style.height=`${rect?.height+200}px`;
+        }
+    }
     onMount(()=>{ 
         setTimeout(() => {
-            let oof= document.getElementById("formcontainer");            
-            let rect = oof?.getBoundingClientRect()// @ts-ignore
-            document.body.style.height=`${rect?.height+150}px`;            
+            resizeBody()          
         }, 200);       
     })
 
