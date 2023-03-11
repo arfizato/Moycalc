@@ -80,7 +80,7 @@
     function isCoefValid(arr:number[],idArr: string[]){
         let valid: Boolean= true;
         arr.forEach((elem:any,i:number) => {
-            console.warn(elem)
+            // console.warn(elem)
             if (elem===null || elem===""){                
                 document.getElementById(idArr[i])?.classList.remove("border-b-zinc-800")
                 document.getElementById(idArr[i])?.classList.add("border-b-red-400")
@@ -99,7 +99,7 @@
                                     &&isSubjectValid(regmix["subjects"],"RM")&&isSubjectValid(cc["subjects"],"CC")
                                     &&isCoefValid(regmix["coef"], regmixCoefNames)&&isCoefValid(cc["coef"], ccCoefNames)
         // console.error("isvalid",isInputValid)
-        console.log('CreateTemplate()');
+        // console.log('CreateTemplate()');
         if (!isInputValid) 
             return Swal.fire({
                 title: 'Error!',
