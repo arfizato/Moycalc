@@ -127,7 +127,8 @@
     <div id="formcontainer" class="h-fit min-h-3/4 w-3/4 bg-zinc-800 rounded mt-24">
         <form id="form" class="rounded flex flex-col justify-evenly   ">
             <h1 class="text-3xl py-4 px-6 text-white uppercase w-full text-center glookFont merriweatherSansFont">
-                {name}</h1>
+                {name}
+            </h1>
             <div id="regmix" class="my-4 " >
                 {#each regmix["subjects"] as subject, i }
                     <div data-coef={subject.coef} class="mx-4 my-2 grid items-center justify-items-center grid-cols-1 text-base text-white srobotoFont
@@ -159,11 +160,21 @@
                     </div>
                 {/each}
             </div>
-            <button on:click|preventDefault={moyCalculate}
-                class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-base w-max mx-auto mt-4 mb-8 py-2 px-8 
-                rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 robotoFont
-                focus:bg-zinc-200 focus:text-black">
-                Submit</button>
+
+            <div class="w-full flex items-center justify-center gap-4 my-6">
+
+                <a href="/" class="py-2 px-1 w-1/6 min-w-max text-center text-base bg-transparent border-2 border-zinc-600 text-zinc-600 
+                    hover:bg-zinc-200 hover:text-zinc-900 transition-all duration-300 relative z-10 robotoFont rounded-md
+                    focus:bg-zinc-200 focus:text-black">
+                    Go Back
+                </a>  
+                <button on:click|preventDefault={moyCalculate}
+                    class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-base py-2 px-8 
+                    rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 robotoFont w-1/4 min-w-max
+                    focus:bg-zinc-200 focus:text-black">
+                    Submit
+                </button>
+            </div>
         </form>
 
     </div>

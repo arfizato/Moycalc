@@ -20,7 +20,9 @@
             oof?.style.setProperty("--mouse-y", `${y}px`)
         }
     }
-    const name = "Welcome to moycalc!";
+
+    const name = "Welcome to moycalc!",
+        hoverClasses="hover:bg-zinc-200 hover:text-zinc-900 focus:bg-zinc-200 focus:text-black border-zinc-200 text-zinc-200 ";
     let uniName:string="",
         semURL:string="";
 
@@ -53,15 +55,15 @@
         // }
     ]
 
-    function lemmeCalculate(){
-        //console.log("wawa")
-        if (browser){
-            window.location.href=semURL
-            // Swal.fire("Right Now there's only one template. we'll add more soon").then(
-            //     ()=> 
-            // )            
-        }
-    }
+    // function lemmeCalculate(){
+    //     //console.log("wawa")
+    //     if (browser){
+    //         window.location.href=semURL
+    //         // Swal.fire("Right Now there's only one template. we'll add more soon").then(
+    //         //     ()=> 
+    //         // )            
+    //     }
+    // }
 </script>
 
 <svelte:head>
@@ -116,12 +118,18 @@
                     </select>
                 </label>
                 <label for="" class="flex items-end"> 
-                    <button disabled={!semURL} on:click|preventDefault={lemmeCalculate}  class="w-full py-2 px-6 bg-transparent border-2 border-zinc-200 
+                    <!-- <button disabled={!semURL} on:click|preventDefault={lemmeCalculate}  class="w-full py-2 px-6 bg-transparent border-2 border-zinc-200 
                         disabled:border-zinc-800 disabled:text-zinc-800 hover:bg-zinc-200 hover:text-zinc-900 transition-all duration-300
                         disabled:pointer-events-none robotoFont
                         ">
                         Calculate
-                    </button> 
+                    </button>  -->
+                    
+                    <a href={!!semURL && semURL.length >0 ? semURL : undefined} class={`py-2 px-1 w-full min-w-max text-center text-base bg-transparent border-2 transition-all 
+                                duration-300 relative z-10 robotoFont ${ !!semURL && semURL.length >0 ? hoverClasses : "border-zinc-600 text-zinc-600 " }`} 
+                    >
+                        Calculate
+                    </a>  
                 </label>                   
             </div>
 

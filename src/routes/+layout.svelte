@@ -1,5 +1,10 @@
 <script>
     import "../app.css";
+      
+    import PageTransition from '../lib/components/PageTransition.svelte';
+    /** @type {import('./$types').LayoutData} */
+    export let data;
+
 </script>
   
 <svelte:head>
@@ -21,4 +26,10 @@
   <meta property ="twitter:image" content ="https://ik.imagekit.io/arfizato/moycalc.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1678441353507"/>
 
 </svelte:head>
+
+
+<PageTransition pathname={data.pathname}>
   <slot />
+</PageTransition>
+
+
