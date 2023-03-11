@@ -7,11 +7,15 @@
 	import { scale,slide, fade } from 'svelte/transition';
 	import { quintOut,expoInOut } from 'svelte/easing';
 
+    function resizeBody(){        
+        if (browser){
+            let oof= document.getElementById("createFormContainer");            
+            let rect = oof?.getBoundingClientRect()// @ts-ignore
+            document.body.style.height=`${rect?.height+200}px`;
+        }
+    }
     onMount(()=>{
-        
-        let oof= document.getElementById("createFormContainer");            
-        let rect = oof?.getBoundingClientRect()// @ts-ignore
-        document.body.style.height=`${rect?.height+200}px`;
+        resizeBody()
     })
 
     function handleMouseMove(e:any){
@@ -150,9 +154,7 @@
     }
     function addRow(itIsRegmix:boolean){
         if (browser){
-            let oof= document.getElementById("createFormContainer");            
-            let rect = oof?.getBoundingClientRect()// @ts-ignore
-            document.body.style.height=`${rect?.height+200}px`;
+            resizeBody();
             let newElem;
             if (itIsRegmix){
                 regmix["subjects"]= [...regmix["subjects"], {name:"",coef:undefined,grades:[,]}]// @ts-ignore
@@ -179,6 +181,7 @@
             regmix["subjects"].splice(index,1)
             regmix["subjects"]= regmix["subjects"]
         }
+        resizeBody();
     }
     function handleKeyDown(e:any){
         let btnfocus;
