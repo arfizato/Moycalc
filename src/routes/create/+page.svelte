@@ -3,6 +3,9 @@
     import { browser } from "$app/environment";// @ts-ignore
 	import { validate_component } from 'svelte/internal';
     import { onMount } from 'svelte/internal';
+    
+	import { scale,slide, fade } from 'svelte/transition';
+	import { quintOut,expoInOut } from 'svelte/easing';
 
     onMount(()=>{
         
@@ -223,18 +226,16 @@
                     <p class="capitalize text-base ">name</p>
                     <p class="capitalize text-base ">coefficient</p>
                     {#each regmix["subjects"] as subject, i}
-                        <!-- <p class="mt-4  ">❌{i}</p> -->
-                        <!-- <button class={"mt-4 regmix"+i} on:click|preventDefault={()=> delRow("regmix"+i,i)} >❌{i}</button> -->
-                        <p class={"mt-4 w-3/4 grid grid-col text-center regmix"+i} >
+                        <p class={"mt-4 w-3/4 grid grid-col text-center regmix"+i}  transition:slide="{{ delay:0, duration:150, easing:quintOut }}">
                             <button on:click|preventDefault={()=> delRow("regmix"+i,i)}  
                                 class="delRowBtn absolute my-auto hover:scale-125 hover:saturate-0 transition-all duration-200 ">
                                 ❌
                             </button>
                             <span class="w-full text-center blocks " >{i}</span>
                         </p>
-                        <input type="text" bind:value={subject["name"]} id={"RMname"+i} placeholder="subject"
+                        <input type="text" bind:value={subject["name"]} id={"RMname"+i} placeholder="subject" transition:slide="{{ delay:0, duration:150, easing:quintOut }}"
                             class={"w-full md:w-3/4 mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  regmix"+i}>
-                        <input type="number" bind:value={subject["coef"]} id={"RMcoef"+i} placeholder="coef"
+                        <input type="number" bind:value={subject["coef"]} id={"RMcoef"+i} placeholder="coef" transition:slide="{{ delay:0, duration:150, easing:quintOut }}"
                             class={"w-full md:w-3/4 mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  regmix"+i}>                        
                     {/each}
                 </div>
@@ -265,16 +266,16 @@
                     <p class="capitalize text-base ">name</p>
                     <p class="capitalize text-base ">coefficient</p>
                     {#each cc["subjects"] as subject, i}
-                        <p class={"mt-4 w-3/4 grid grid-col text-center cc"+i} >
+                        <p class={"mt-4 w-3/4 grid grid-col text-center cc"+i}   transition:slide="{{ delay:0, duration:150, easing:quintOut }}">
                             <button on:click|preventDefault={()=> delRow("cc"+i,i)}  
-                                class="absolute my-auto hover:scale-125 hover:saturate-0 hover:brightness-200 transition-all duration-200 ">
+                                class="delRowBtn absolute my-auto hover:scale-125 hover:saturate-0 hover:brightness-200 transition-all duration-200 ">
                                 ❌
                             </button>
                             <span class="w-full text-center blocks " >{i}</span>
                         </p>
-                        <input type="text" bind:value={subject["name"]} id={"CCname"+i} placeholder="subject"
+                        <input type="text" bind:value={subject["name"]} id={"CCname"+i} placeholder="subject"  transition:slide="{{ delay:0, duration:150, easing:quintOut }}"
                             class={"w-full md:w-3/4 mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  cc"+i}>
-                        <input type="number" bind:value={subject["coef"]} id={"CCcoef"+i} placeholder="coef"
+                        <input type="number" bind:value={subject["coef"]} id={"CCcoef"+i} placeholder="coef"  transition:slide="{{ delay:0, duration:150, easing:quintOut }}"
                             class={"w-full md:w-3/4 mt-4 bg-inherit py-1 border-b-2 border-b-zinc-800  cc"+i}>                        
                     {/each}
                 </div>
