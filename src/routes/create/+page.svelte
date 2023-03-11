@@ -112,35 +112,37 @@
                 }
             })
 
-        // @ts-ignore
-        const { value: name } = await Swal.fire({
-            title: 'Enter a name For the template',
-            input: 'text',
-            inputLabel: 'Make sure it\'s readable for if you share it with others',
-            inputValue: "",
-            showCancelButton: true,
-            background: "#111",
-            backdrop:"#00000070",
-            color: "#fff",
-            buttonsStyling: false,
-            customClass:{
-                confirmButton:"bg-transparent text-white py-2 px-4 hover:bg-white hover:text-black transition-all duration-200 border-2 border-white rounded-md  mx-2 ",
-                cancelButton:"bg-zinc-800 text-white py-2 px-4 hover:bg-white hover:text-black transition-all duration-200 border-2 border-white rounded-md mx-2",
-                inputLabel:"text-zinc-400",
-                // validationMessage:"bg-transparent text-white"
-            },
-            inputValidator: (value) => {
-                if (!value) {
-                return 'You need to write something!'
+        setTimeout(async () => {
+            // @ts-ignore
+            const { value: name } = await Swal.fire({
+                title: 'Enter a name For the template',
+                input: 'text',
+                inputLabel: 'Make sure it\'s readable for if you share it with others',
+                inputValue: "",
+                showCancelButton: true,
+                background: "#111",
+                backdrop:"#00000070",
+                color: "#fff",
+                buttonsStyling: false,
+                customClass:{
+                    confirmButton:"bg-transparent text-white py-2 px-4 hover:bg-white hover:text-black transition-all duration-200 border-2 border-white rounded-md  mx-2 ",
+                    cancelButton:"bg-zinc-800 text-white py-2 px-4 hover:bg-white hover:text-black transition-all duration-200 border-2 border-white rounded-md mx-2",
+                    inputLabel:"text-zinc-400",
+                    // validationMessage:"bg-transparent text-white"
+                },
+                inputValidator: (value) => {
+                    if (!value) {
+                    return 'You need to write something!'
+                    }
                 }
-            }
-        })
-        if (name) {
-            const param:string = utf8_to_b64(JSON.stringify({name,regmix,cc}))
-            if (browser) {
-                window.location.href="/calculate?data="+param
-            }
-        }
+            })
+            if (name) {
+                const  param:string = utf8_to_b64(JSON.stringify({name,regmix,cc}))
+                if (browser) {
+                    window.location.href="/calculate?data="+param
+                }
+            }            
+        }, 100);
 
     }
     function addRow(itIsRegmix:boolean){
@@ -163,9 +165,9 @@
     function delRow(className: string,index: number){
         let elemfocus
         if (browser){
-            elemfocus= document.querySelector("button:focus");
-            console.log("delRow()",!elemfocus,elemfocus)
-            if (!!elemfocus) return
+            elemfocus= document.querySelector(".delRowBtn:focus");
+            // console.log("delRow()",!elemfocus,elemfocus)
+            if (!elemfocus) return
         }
         if (className[0]==="c"){
             cc["subjects"].splice(index,1)
@@ -225,7 +227,7 @@
                         <!-- <button class={"mt-4 regmix"+i} on:click|preventDefault={()=> delRow("regmix"+i,i)} >❌{i}</button> -->
                         <p class={"mt-4 w-3/4 grid grid-col text-center regmix"+i} >
                             <button on:click|preventDefault={()=> delRow("regmix"+i,i)}  
-                                class="absolute my-auto hover:scale-125 hover:saturate-0 transition-all duration-200 ">
+                                class="delRowBtn absolute my-auto hover:scale-125 hover:saturate-0 transition-all duration-200 ">
                                 ❌
                             </button>
                             <span class="w-full text-center blocks " >{i}</span>
