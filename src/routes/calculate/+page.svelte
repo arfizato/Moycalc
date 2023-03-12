@@ -2,18 +2,10 @@
     import Swal from 'sweetalert2'
     import { browser } from "$app/environment";// @ts-ignore
     import { onMount } from 'svelte/internal';
-
-    onMount(()=>{ 
-        setTimeout(() => {
-            let oof= document.getElementById("formcontainer");            
-            let rect = oof?.getBoundingClientRect()// @ts-ignore
-            document.body.style.height=`${rect?.height+200}px`;       
-        }, 1000);       
-    })
-
 	/** @type {import('./$types').PageData} */
     export let data:any;
-    //console.log("data",data)
+
+
     function handleMouseMove(e:any){
         if (browser){
             let oof= document.getElementById("formcontainer");
@@ -137,6 +129,29 @@
             })
         }
     }
+    function getFormula(coef:number, grades:number[], gradecoef:number[], placeholders:string[]){
+        let str:string="",
+            nullInput:boolean=false,
+            moyenne:number= 0;
+        placeholders.forEach((placeholder,i) => {
+            str+=`+ ( ${grades[i]=== null || grades[i]===undefined ? placeholder : grades[i]} x ${gradecoef[i] === null ? "null" : gradecoef[i]}) `
+            if (grades[i] === null || gradecoef[i]== null) 
+                nullInput= true
+            if (!!grades[i] && !!gradecoef[i]){
+                moyenne+=grades[i]*gradecoef[i]
+            }            
+        });
+        return `[${str.substring(1)}] ${nullInput ? "= ??": "= "+Math.round(moyenne * 100) / 100+` (x${coef})` } `
+    }
+
+    
+    onMount(()=>{ 
+        setTimeout(() => {
+            let oof= document.getElementById("formcontainer");            
+            let rect = oof?.getBoundingClientRect()// @ts-ignore
+            document.body.style.height=`${rect?.height+200}px`;       
+        }, 1000);       
+    })
 </script>
 
 <svelte:head>
@@ -156,7 +171,7 @@
             <div id="regmix" class="my-4 " >
                 {#each regmix["subjects"] as subject, i }
                     <div data-coef={subject.coef} class="mx-4 my-2 grid items-center justify-items-center grid-cols-1 text-base text-white srobotoFont
-                        md:grid-cols-4 md:grid-rows-1" >
+                        md:grid-cols-4 md:grid-rows-1" title={getFormula(subject.coef, subject.grades, regmix.coef, ["DS","Exam"])}>
                         <p class="w-3/4 text-start " >
                             {subject.name}<span class="text-lg text-zinc-400 ">{` (${subject.coef})`}</span>                        
                         </p>
@@ -171,7 +186,7 @@
             <div id="cc" class="my-4 " >
                 {#each cc["subjects"] as subject, i }
                     <div data-coef={subject.coef} class="mx-4 my-2 grid items-center justify-items-center grid-cols-1 text-base text-white srobotoFont
-                        md:grid-cols-4 md:grid-rows-1" >
+                        md:grid-cols-4 md:grid-rows-1" title={getFormula(subject.coef, subject.grades, cc.coef, ["DS1","DS2","CC"])} >
                         <p class="w-3/4 text-start " >
                             {subject.name}<span class="text-lg text-zinc-400 ">{` (${subject.coef})`}</span>                        
                         </p>
@@ -198,7 +213,7 @@
                     focus:bg-zinc-200 focus:text-black">
                     Submit
                 </button>
-                <button class="hover:scale-90 transition-all duration-200" on:click|preventDefault={()=>{copyUrl(data.url)}}>
+                <button title="Copy Link To Clipboard" class="hover:scale-90 transition-all duration-200" on:click|preventDefault={()=>{copyUrl(data.url)}}>
                     <svg width="40px" height="40px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#e4e4e7" stroke="#e4e4e7" transform="rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#e4e4e7" d="M768 832a128 128 0 0 1-128 128H192A128 128 0 0 1 64 832V384a128 128 0 0 1 128-128v64a64 64 0 0 0-64 64v448a64 64 0 0 0 64 64h448a64 64 0 0 0 64-64h64z"></path><path fill="#e4e4e7" d="M384 128a64 64 0 0 0-64 64v448a64 64 0 0 0 64 64h448a64 64 0 0 0 64-64V192a64 64 0 0 0-64-64H384zm0-64h448a128 128 0 0 1 128 128v448a128 128 0 0 1-128 128H384a128 128 0 0 1-128-128V192A128 128 0 0 1 384 64z"></path></g></svg>
                 </button>
             </div>
