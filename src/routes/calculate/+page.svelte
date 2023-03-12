@@ -118,7 +118,7 @@
                 }
             })
     }
-    function copyUrl(url){
+    function copyUrl(url:string){
         console.log("wawa");
         if (browser){
             navigator.clipboard.writeText(url );
