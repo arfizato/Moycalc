@@ -100,13 +100,21 @@
                 backdrop:"#00000070",
                 color: "#fff",
                 buttonsStyling: false,
+                showDenyButton: true,
+                denyButtonText: "Share Grades",                
                 customClass:{
                     confirmButton:"bg-transparent text-white py-2 px-4 hover:bg-white hover:text-black transition-all duration-200 border-2 border-white rounded-md",
+                    denyButton:"bg-transparent text-white py-2 px-4 hover:bg-white hover:text-black transition-all duration-200 border-2 border-white rounded-md ml-4",
+                }
+            }).then((result)=>{
+                if (result.isDenied){
+                    const  b64Data:string = utf8_to_b64(JSON.stringify({name,regmix,cc}))
+                    copyUrl(data.url.origin+"/calculate?data="+b64Data)
+                    // window.localStorage.setItem(data.url,b64Data)
                 }
             })
     }
     function copyUrl(url:string){
-        console.log("wawa");
         if (browser){
             navigator.clipboard.writeText(url );
 
@@ -116,7 +124,7 @@
                 color:"#e4e4e7",
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 1500,
+                timer: 1500,                
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
