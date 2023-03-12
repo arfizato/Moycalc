@@ -5,9 +5,12 @@
     import { onMount } from 'svelte/internal';
 
     onMount(()=>{        
-        let oof= document.getElementById("formcontainer");            
-        let rect = oof?.getBoundingClientRect()// @ts-ignore
-        document.body.style.height=`${rect?.height+150}px`;
+        setTimeout(() => {
+            let oof= document.getElementById("formcontainer");            
+            let rect = oof?.getBoundingClientRect()// @ts-ignore
+            document.body.style.height=`${rect?.height+150}px`;
+            
+        }, 100);
     })
 
     function handleMouseMove(e:any){
