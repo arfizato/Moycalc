@@ -13,7 +13,7 @@
     onMount(()=>{ 
         setTimeout(() => {
             resizeBody()          
-        }, 200);       
+        }, 500);       
     })
 
 	/** @type {import('./$types').PageData} */
