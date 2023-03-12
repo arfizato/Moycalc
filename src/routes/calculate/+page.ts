@@ -25,7 +25,7 @@ export const load = (async ({url}) => {
         //@ts-ignore
         const data:string= b64_to_utf8(""+b64)
 
-        return JSON.parse(data)
+        return {...JSON.parse(data), url:url}
     }
 }) satisfies PageLoad;
 

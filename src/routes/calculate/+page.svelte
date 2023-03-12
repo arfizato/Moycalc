@@ -5,7 +5,7 @@
 
     function resizeBody(){        
         if (browser){
-            let oof= document.getElementById("createFormContainer");            
+            let oof= document.getElementById("formcontainer");            
             let rect = oof?.getBoundingClientRect()// @ts-ignore
             document.body.style.height=`${rect?.height+200}px`;
         }
@@ -118,6 +118,30 @@
                 }
             })
     }
+    function copyUrl(url){
+        console.log("wawa");
+        if (browser){
+            navigator.clipboard.writeText(url );
+
+            const Toast = Swal.mixin({
+                toast: true,
+                background: "#111",
+                color:"#e4e4e7",
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Link Copied'
+            })
+        }
+    }
 </script>
 
 <svelte:head>
@@ -178,6 +202,9 @@
                     rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 robotoFont w-1/4 min-w-max
                     focus:bg-zinc-200 focus:text-black">
                     Submit
+                </button>
+                <button class="hover:scale-90 transition-all duration-200" on:click|preventDefault={()=>{copyUrl(data.url)}}>
+                    <svg width="40px" height="40px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#e4e4e7" stroke="#e4e4e7" transform="rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#e4e4e7" d="M768 832a128 128 0 0 1-128 128H192A128 128 0 0 1 64 832V384a128 128 0 0 1 128-128v64a64 64 0 0 0-64 64v448a64 64 0 0 0 64 64h448a64 64 0 0 0 64-64h64z"></path><path fill="#e4e4e7" d="M384 128a64 64 0 0 0-64 64v448a64 64 0 0 0 64 64h448a64 64 0 0 0 64-64V192a64 64 0 0 0-64-64H384zm0-64h448a128 128 0 0 1 128 128v448a128 128 0 0 1-128 128H384a128 128 0 0 1-128-128V192A128 128 0 0 1 384 64z"></path></g></svg>
                 </button>
             </div>
         </form>
