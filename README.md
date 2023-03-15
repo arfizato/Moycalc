@@ -20,13 +20,16 @@ You can calculate your average directly if the semester you want to calculate th
 
 You can create your own template if you can't find the one you need or you're not satisfied with the ones that already exist.
 # Screenshots
-<img src="https://ik.imagekit.io/arfizato/moycalc.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1678441353507"> 
-<details>
-      <summary>See More </summary>
-      <img src="https://ik.imagekit.io/arfizato/987shots_so.png?updatedAt=1678893994298"> 
-      <img src="https://ik.imagekit.io/arfizato/461shots_so.png?updatedAt=1678893994048"> 
-      <img src="https://ik.imagekit.io/arfizato/626shots_so.png?updatedAt=1678893994295">
-</details>
+<p align="center">
+      <img height="300px" src="https://ik.imagekit.io/arfizato/moycalc.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1678441353507"> 
+      <details align="center">
+            <summary>See More </summary>
+            <img height="300px" src="https://ik.imagekit.io/arfizato/987shots_so.png?updatedAt=1678893994298"> 
+            <img height="300px" src="https://ik.imagekit.io/arfizato/461shots_so.png?updatedAt=1678893994048"> 
+            <img height="300px" src="https://ik.imagekit.io/arfizato/626shots_so.png?updatedAt=1678893994295">
+      </details>
+</p>
+
 
 # Tech Stack
  ![Svelte](https://img.shields.io/badge/svelte-%23f1413d.svg?style=for-the-badge&logo=svelte&logoColor=white) 
