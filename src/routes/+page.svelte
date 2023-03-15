@@ -1,7 +1,7 @@
 <script lang="ts">
     import { browser } from "$app/environment";// @ts-ignore
 	// import Swal from "sweetalert2";
-    import ISAMM from "./ISAMM.json";
+    import ISAMM from "../lib/ISAMM.json";
     import { onMount } from 'svelte/internal';
 
     onMount(()=>{        
