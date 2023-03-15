@@ -38,17 +38,17 @@ You can create your own template if you can't find the one you need or you're no
 
 ### Roadmap
 
-- [ ] sound feature to troll   
-- [ ] save page with notet for future reference  
-- [ ] Add feat to send the grades to the user through email  or download pdf 
-- [ ] Add a way for people to submit their templates to be  saved  
-- [ ] backend slug in calculate  
-- [x] Fix layout overflow in (`/create`)   
-- [x] Add actual data in main (`/`)   
-- [x] Actually calculate the grades (maybe credits)   
-- [x] Moyenne with 3 deciman points (19.125 instead of 19. 1259123)  
-- [x] Better looking moyenne popup   
-- [x] Borders for Select in `/`   
+- [ ] sound feature to troll.
+- [ ] save page with notet for future reference.
+- [ ] Add feat to send the grades to the user through email  or download .
+- [ ] Add a way for people to submit their templates to be  saved.
+- [ ] backend slug in calculate.
+- [x] Fix layout overflow in (`/create`).
+- [x] Add actual data in main (`/`).
+- [x] Actually calculate the grades (maybe credits).
+- [x] Moyenne with 3 deciman points (19.125 instead of 19. 1259123).
+- [x] Better looking moyenne popup.
+- [x] Borders for Select in `/`.
 - [ ] ~~wa9telli yakhtar semester n3abi el université at the  same time~~
 
 
