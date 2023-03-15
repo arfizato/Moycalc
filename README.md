@@ -35,18 +35,19 @@ You can create your own template if you can't find the one you need or you're no
 
 ### Roadmap
 
-<input type="checkbox"> sound feature to troll   
-<input type="checkbox"> save page with notet for future reference  
-<input type="checkbox"> Add feat to send the grades to the user through email  or download pdf 
-<input type="checkbox"> Add a way for people to submit their templates to be  saved  
-<input type="checkbox"> backend slug in calculate  
-<input checked type="checkbox"> Fix layout overflow in (`/create`)   
-<input checked type="checkbox"> Add actual data in main (`/`)   
-<input checked type="checkbox"> Actually calculate the grades (maybe credits)   
-<input checked type="checkbox"> Moyenne with 3 deciman points (19.125 instead of 19. 1259123)  
-<input checked type="checkbox"> Better looking moyenne popup   
-<input checked type="checkbox"> Borders for Select in `/`   
-<input type="checkbox"> ~~wa9telli yakhtar semester n3abi el université at the  same time~~
+- [ ] sound feature to troll   
+- [ ] save page with notet for future reference  
+- [ ] Add feat to send the grades to the user through email  or download pdf 
+- [ ] Add a way for people to submit their templates to be  saved  
+- [ ] backend slug in calculate  
+- [x] Fix layout overflow in (`/create`)   
+- [x] Add actual data in main (`/`)   
+- [x] Actually calculate the grades (maybe credits)   
+- [x] Moyenne with 3 deciman points (19.125 instead of 19. 1259123)  
+- [x] Better looking moyenne popup   
+- [x] Borders for Select in `/`   
+- [ ] ~~wa9telli yakhtar semester n3abi el université at the  same time~~
+
 
 # Setup
 - Clone the repository `https://github.com/arfizato/Moycalc.git`.
