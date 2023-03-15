@@ -22,12 +22,12 @@ You can create your own template if you can't find the one you need or you're no
 # Screenshots
 <p align="center">
       <img height="300px" src="https://ik.imagekit.io/arfizato/moycalc.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1678441353507"> 
-      <details align="center">
-            <summary>See More </summary>
+      <p align="center">
+            <!-- <summary>See More </summary> -->
             <img height="300px" src="https://ik.imagekit.io/arfizato/987shots_so.png?updatedAt=1678893994298"> 
             <img height="300px" src="https://ik.imagekit.io/arfizato/461shots_so.png?updatedAt=1678893994048"> 
             <img height="300px" src="https://ik.imagekit.io/arfizato/626shots_so.png?updatedAt=1678893994295">
-      </details>
+      </p>
 </p>
 
 
