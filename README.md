@@ -49,7 +49,7 @@ You can create your own template if you can't find the one you need or you're no
 - [x] Moyenne with 3 deciman points (19.125 instead of 19. 1259123).
 - [x] Better looking moyenne popup.
 - [x] Borders for Select in `/`.
-- [ ] ~~wa9telli yakhtar semester n3abi el université at the  same time~~
+- [X] wa9telli yakhtar semester n3abi el université at the  same time.
 
 
 # Setup
