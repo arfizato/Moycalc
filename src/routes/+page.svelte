@@ -27,13 +27,16 @@
     const name = "Welcome to moycalc!",
         hoverClasses="hover:bg-zinc-200 hover:text-zinc-900 focus:bg-zinc-200 focus:text-black border-zinc-200 text-zinc-200 ";
     let uniName:string="",
-        semURL:string="";
+        semURL:string="",
+        semSelect:HTMLSelectElement,
+        semName:string,
+        semIndex: number;
 
     const data= [
         {
             name:"ISAMM",
             semesters: ISAMM
-        },
+        }
         // {
         //     name:"FST",
         //     semesters:[
@@ -57,16 +60,26 @@
         //     ]
         // }
     ]
+    
+    function selectedSemester(){
+        semIndex = semSelect.options.selectedIndex;
+        semName = semSelect.options[semIndex].text;
 
-    // function lemmeCalculate(){
-    //     //console.log("wawa")
-    //     if (browser){
-    //         window.location.href=semURL
-    //         // Swal.fire("Right Now there's only one template. we'll add more soon").then(
-    //         //     ()=> 
-    //         // )            
-    //     }
-    // }
+    }
+    function selectedUniversity(){
+        if (semName.includes(uniName) ){
+            let sum=0;
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].name===uniName) break
+                sum+=data[i].semesters.length
+            }
+            semIndex -= sum; 
+        }       
+        else {
+            semURL = ""
+        }
+        semSelect.options.selectedIndex = semIndex;
+    }
 </script>
 
 <svelte:head>
@@ -97,7 +110,7 @@
             <h1 class="text-xl py-4 text-white capitalize w-full text-center glookFont smerriweatherSansFont"> Calculate away! </h1>
             <div class="mx-8 grid grid-cols-1 gap-2 text-base text-zinc-200 md:grid-cols-3">
                 <label for="uni"><p>University</p>
-                    <select name="university" id="uni" bind:value={uniName} on:change={()=> semURL = ""}  
+                    <select name="university" id="uni" bind:value={uniName} on:change={()=>selectedUniversity() } 
                         class="w-full bg-transparent py-2 px-4 hover:ring-white hover:border-white hover:ring-1 focus:ring-2 focus:ring-white  border-[1px]  ">
                         {#each data as uni }
                             <option value={uni.name} class="bg-zinc-800 text-zinc-200 " >{uni.name}</option>
@@ -105,7 +118,7 @@
                     </select>
                 </label>
                 <label for="sem"><p>Semester</p>
-                    <select name="semester" id="sem" bind:value={semURL} 
+                    <select name="semester" id="sem" bind:value={semURL} bind:this={semSelect} on:change={()=>selectedSemester()}
                         class="w-full bg-transparent py-2 px-4 hover:ring-white hover:border-white hover:ring-1 focus:ring-2 focus:ring-white  border-[1px] ">
                         {#each data as uni}
                             {#if uniName === uni.name }
@@ -120,14 +133,7 @@
                         {/each}
                     </select>
                 </label>
-                <label for="" class="flex items-end"> 
-                    <!-- <button disabled={!semURL} on:click|preventDefault={lemmeCalculate}  class="w-full py-2 px-6 bg-transparent border-2 border-zinc-200 
-                        disabled:border-zinc-800 disabled:text-zinc-800 hover:bg-zinc-200 hover:text-zinc-900 transition-all duration-300
-                        disabled:pointer-events-none robotoFont
-                        ">
-                        Calculate
-                    </button>  -->
-                    
+                <label for="" class="flex items-end">                     
                     <a href={!!semURL && semURL.length >0 ? semURL : undefined} class={`py-2 px-1 w-full min-w-max text-center text-base bg-transparent border-2 transition-all 
                                 duration-300 relative z-10 robotoFont ${ !!semURL && semURL.length >0 ? hoverClasses : "border-zinc-600 text-zinc-600 " }`} 
                     >
