@@ -16,14 +16,21 @@
             oof?.style.setProperty("--mouse-y", `${y}px`)
         }
     }
-    let name:any = "",
-        regmix:any= {
+    type SubjectsType = {
+        name:string,coef:number,grades:number[]
+    }   
+    interface CategoryType{
+        coef: number[],
+        subjects:SubjectsType[]
+    }
+    let name:string = "",
+        regmix:CategoryType= {
             coef:[0.3,0.7],
             subjects:[
                 // {name:"Algebre 2",  coef:1.5,   grades:[,] }, {name:"Analyse 2",  coef:1.5,   grades:[,] }, {name:"Algo",       coef:1.5,   grades:[,] }, {name:"C",          coef:1,     grades:[,] }, {name:"Python",     coef:1,     grades:[,] }, {name:"SE 2",       coef:1.5,   grades:[,] }, {name:"Réseaux",    coef:2,     grades:[,] }, {name:"BDD",        coef:2,     grades:[,] },
             ]
         },
-        cc:any = {
+        cc:CategoryType = {
             coef: [0.4,0.4,0.2],
             subjects:[                
                 // {name:"Eng 2",  coef:1 , grades:[,,]}, {name:"Comm 2", coef:1 , grades:[,,]}, {name:"2CN",    coef:1 , grades:[,,]},
@@ -37,25 +44,23 @@
     function b64_to_utf8(str:string) {
         return decodeURIComponent(escape(window.atob(str)));
     }
-    function isValidInput(arr:any,str:string){
+    function isInputValid(arr:any,str:string){
+        const expectedLength:number = str ==="cc" ? 3 : 2;
+
         let valid:Boolean = true;
         arr.forEach((elem:any,i:number) => {
-            elem["grades"].forEach((grade:number,j:number) => {
-                if(grade===null || grade>20 || grade<0){
+            for (let j = 0; j < expectedLength; j++) {
+                const grade= elem.grades[j];
+                console.log(elem,i,grade,j)
+                if(grade===null || grade===undefined || grade>20 || grade<0){
                     valid=false;
-                    // Swal.fire("null")
                     document.querySelector(`#${str}_${i}_${j}`)?.classList.add("border-b-red-400")
                     document.querySelector(`#${str}_${i}_${j}`)?.classList.remove("border-b-zinc-800")
-                // } else if (){                    
-                //     valid=false;
-                //     // Swal.fire("gotta be in [0..20]")
-                //     document.querySelector(`#${str}_${i}_${j}`)?.classList.add("border-b-red-400")
-                //     document.querySelector(`#${str}_${i}_${j}`)?.classList.remove("border-b-zinc-800")
                 } else{                    
                     document.querySelector(`#${str}_${i}_${j}`)?.classList.remove("border-b-red-400")
                     document.querySelector(`#${str}_${i}_${j}`)?.classList.add("border-b-zinc-800")
                 }
-            });
+            }
         });
 
         return valid
@@ -72,7 +77,7 @@
         return {coefTotal,gradesTotal}
     }
     function moyCalculate(){
-        const validInput:Boolean = isValidInput(regmix["subjects"],'regmix') && isValidInput(cc["subjects"],"cc") 
+        const validInput:Boolean = isInputValid(regmix["subjects"],'regmix') && isInputValid(cc["subjects"],"cc") 
         if (!validInput) 
             return Swal.fire({
                 title: 'Error!',
@@ -146,7 +151,7 @@
             if (grades[i] === null || gradecoef[i]== null) 
                 nullInput= true
             if (!!grades[i] && !!gradecoef[i]){
-                moyenne+=grades[i]*gradecoef[i]
+                moyenne+=grades[i]* gradecoef[i]
             }            
         });
         return `[${str.substring(1)}] ${nullInput ? "= ??": "= "+Math.round(moyenne * 100) / 100+` (x${coef})` } `
