@@ -148,7 +148,11 @@
 
     }
     function addRow(itIsRegmix:boolean){
+        let btnfocus;
         if (browser){
+            btnfocus= document.querySelector(".addRowBtn:focus");
+            if (!btnfocus) return
+            
             resizeBody();
             let newElem;
             if (itIsRegmix){
@@ -185,8 +189,7 @@
         if (e.key ==="Enter" ){
             if (!btnfocus){
                 createTemplate()
-            }
-            
+            }            
         }
     }
 </script>
@@ -237,7 +240,7 @@
                 </div>
                 <div class="w-full flex justify-center">
                     <button on:click|preventDefault={() => addRow(true)}
-                        class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-base mt-4 mb-8 py-2 px-8 
+                        class="addRowBtn bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-base mt-4 mb-8 py-2 px-8 
                             rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 
                             focus:bg-zinc-200 focus:text-black ">
                         ➕ADD
@@ -277,7 +280,7 @@
                 </div>
                 <div class="w-full flex justify-center">
                     <button on:click|preventDefault={() => addRow(false)}
-                        class="bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-base mt-4 mb-8 py-2 px-8 
+                        class="addRowBtn bg-transparent border-2 border-zinc-200 text-zinc-200 disabled:bg-zinc-800 text-base mt-4 mb-8 py-2 px-8 
                             rounded-md hover:bg-zinc-200 hover:text-black relative transition-all duration-200 z-10 
                             focus:bg-zinc-200 focus:text-black ">
                         ➕ADD
