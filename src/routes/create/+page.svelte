@@ -84,26 +84,21 @@
     function isCoefValid(arr:number[],idArr: string[]){
         let valid: Boolean= true;
         arr.forEach((elem:any,i:number) => {
-            // console.warn(elem)
             if (elem===null || elem===""){                
                 document.getElementById(idArr[i])?.classList.remove("border-b-zinc-800")
                 document.getElementById(idArr[i])?.classList.add("border-b-red-400")
                 valid= false
-                //console.log(idArr[i],valid)
             }else{                
                 document.getElementById(idArr[i])?.classList.remove("border-b-red-400")
                 document.getElementById(idArr[i])?.classList.add("border-b-zinc-800")
             }
         });
-        //console.log("return",valid)
         return valid
     }
     async function createTemplate(){
         let isInputValid: Boolean = (regmix["subjects"].length>0 || cc["subjects"].length>0)
                                     &&isSubjectValid(regmix["subjects"],"RM")&&isSubjectValid(cc["subjects"],"CC")
                                     &&isCoefValid(regmix["coef"], regmixCoefNames)&&isCoefValid(cc["coef"], ccCoefNames)
-        // console.error("isvalid",isInputValid)
-        // console.log('CreateTemplate()');
         if (!isInputValid) 
             return Swal.fire({
                 title: 'Error!',
@@ -171,7 +166,6 @@
         let elemfocus
         if (browser){
             elemfocus= document.querySelector(".delRowBtn:focus");
-            // console.log("delRow()",!elemfocus,elemfocus)
             if (!elemfocus) return
         }
         if (className[0]==="c"){
@@ -188,7 +182,6 @@
         if (browser){
             btnfocus= document.querySelector("button:focus");
         }
-        // console.log(e.key,btnfocus,e)
         if (e.key ==="Enter" ){
             if (!btnfocus){
                 createTemplate()

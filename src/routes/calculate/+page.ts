@@ -14,7 +14,6 @@ function b64_to_utf8(str:string) {
 }
 
 export const load = (async ({url}) => {
-    // //console.log("params",url)
     if (browser){
         const b64:string|null = url.searchParams.get("data");
         if (!b64 && browser){

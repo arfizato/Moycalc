@@ -51,7 +51,6 @@
         arr.forEach((elem:any,i:number) => {
             for (let j = 0; j < expectedLength; j++) {
                 const grade= elem.grades[j];
-                console.log(elem,i,grade,j)
                 if(grade===null || grade===undefined || grade>20 || grade<0){
                     valid=false;
                     document.querySelector(`#${str}_${i}_${j}`)?.classList.add("border-b-red-400")
