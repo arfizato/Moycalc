@@ -152,7 +152,7 @@
         if (browser){
             btnfocus= document.querySelector(".addRowBtn:focus");
             if (!btnfocus) return
-            
+
             resizeBody();
             let newElem;
             if (itIsRegmix){
@@ -203,7 +203,7 @@
 </h1> -->
 <section id="createMain" class="w-full h-screen min-h-fit grid justify-items-center bg-black " on:mousemove={(e)=> handleMouseMove(e)} >
     <div id="createFormContainer" class="h-fit min-h-3/4 w-3/4 bg-zinc-800 rounded mt-24">
-        <form id="form" class="rounded flex flex-col justify-evenly  " on:keypress={(event)=> handleKeyDown(event)}>
+        <form id="form" class="rounded flex flex-col justify-evenly  " on:keypress={(event)=> handleKeyDown(event)} name="create" data-netlify="true">
             <h1 class="text-3xl py-4 px-6 text-white uppercase w-full text-center glookFont merriweatherSansFont">
                 Create Your own template
             </h1>
