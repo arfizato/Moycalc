@@ -167,9 +167,9 @@
     #descLink{
         @apply underline hover:text-black hover:bg-white rounded transition-all duration-200 focus:bg-zinc-200 focus:text-black;
     }
-    :global(html) {
+    /* :global(html) {
         background-color: theme(colors.gray.100);
-    }
+    } */
     #main{
         #formcontainer{
             position: relative;
