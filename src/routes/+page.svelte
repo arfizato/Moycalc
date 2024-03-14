@@ -145,8 +145,8 @@
             <!-- /* ----------------------------- create template ---------------------------- */ -->
             <h1 class="text-xl py-4 mt-6 text-white capitalize w-full text-center glookFont smerriweatherSansFont"> or </h1>
             <div class="w-full flex justify-center ">
-                <a href="/create" class="py-2 w-3/4 lg:w-2/4 text-center text-base bg-transparent border-2 border-zinc-200 text-zinc-200 
-                    hover:bg-zinc-200 hover:text-zinc-900 transition-all duration-300 relative z-10 robotoFont 
+                <a href="/create" class="py-2 w-3/4 lg:w-2/4 text-center text-base bg-transparent border-2 hover:border-zinc-200 hover:text-zinc-200 hover:bg-zinc-900
+                    bg-zinc-200 text-zinc-900 transition-all duration-300 relative z-10 robotoFont 
                     focus:bg-zinc-200 focus:text-black">
                     Create a Template
                 </a>  
