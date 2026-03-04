@@ -36,6 +36,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"driver.js": "^1.4.0",
 		"sweetalert2": "^11.7.2"
 	}
 }
