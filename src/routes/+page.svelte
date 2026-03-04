@@ -21,7 +21,6 @@
 			await new Promise((resolve) => setTimeout(resolve, 200));
 
 			const finishedTutorial = localStorage.getItem('finished-tutorial');
-			console.log('Tutorial check - finished-tutorial:', finishedTutorial);
 
 			if (finishedTutorial !== 'true') {
 				// Wait for DOM to be ready
@@ -32,45 +31,38 @@
 				const semEl = document.querySelector('#sem');
 				const createBtnEl = document.querySelector('#createBtn');
 
-				console.log('Elements found:', { uni: !!uniEl, sem: !!semEl, createBtn: !!createBtnEl });
-
-				console.log('Driver function:', typeof driver, driver);
-
 				if (uniEl && semEl && createBtnEl) {
-					// Initialize driver.js for the tour
+					// Initialize driver.js with steps
 					driverObj = driver({
-						showProgress: true,
 						animate: true,
 						steps: [
 							{
 								element: '#uni',
-								title: 'Select University',
-								description: 'Select your university here'
+								popover: {
+									title: 'Select University',
+									description: 'Select your university here'
+								}
 							},
 							{
 								element: '#sem',
-								title: 'Select Semester',
-								description: 'Then select your semester'
+								popover: {
+									title: 'Select Semester',
+									description: 'Then select your semester'
+								}
 							},
 							{
 								element: '#createBtn',
-								title: 'Create Template',
-								description: "If your template doesn't exist, create one here!"
+								popover: {
+									title: 'Create Template',
+									description: "If your template doesn't exist, create one here!"
+								}
 							}
-						],
-						onDestroyed: () => {
-							localStorage.setItem('finished-tutorial', 'true');
-						}
+						]
 					});
 
-					console.log('Driver initialized, starting tour...');
-					// Use drive() instead of start()
+					// Start the driver tour
 					driverObj.drive();
-				} else {
-					console.error('Tutorial elements not found!');
 				}
-			} else {
-				console.log('Tutorial already completed');
 			}
 		} catch (error) {
 			console.error('Tutorial error:', error);

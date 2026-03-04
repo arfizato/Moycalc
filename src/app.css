@@ -47,3 +47,220 @@ body::-webkit-scrollbar-thumb
 .robotoFont{
     font-family: 'Roboto Condensed', sans-serif;        
 }
+
+/* driver.js dark theme styling */
+.driver-popover {
+	background-color: #18181b !important;
+	border: 1px solid #3f3f46 !important;
+	border-radius: 0.5rem !important;
+	box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+	color: #e4e4e7 !important;
+	font-family: 'Roboto Condensed', sans-serif !important;
+	max-width: 320px !important;
+}
+
+/* Title and description - use class and element selectors */
+[class*="driver-popover-title"],
+.driverjs-popover-title {
+	display: block !important;
+	color: #fff !important;
+	font-weight: 600 !important;
+	font-size: 1.125rem !important;
+	/* border-bottom: 1px solid #3f3f46 !important; */
+	padding: 0.75rem 1rem !important;
+	margin: 0 !important;
+}
+
+[class*="driver-popover-description"],
+.driverjs-popover-description {
+	display: block !important;
+	color: #a1a1aa !important;
+	font-size: 0.875rem !important;
+	line-height: 1.5 !important;
+	padding: 1rem !important;
+	margin: 0 !important;
+}
+
+/* Footer with buttons */
+[class*="driver-popover-footer"],
+.driverjs-popover-footer {
+	/* border-top: 1px solid #3f3f46 !important; */
+	padding: 0.5rem 1rem !important;
+	display: flex !important;
+	justify-content: space-between !important;
+	gap: 0.5rem !important;
+}
+
+/* Close button */
+[class*="driver-popover-close"] {
+	background: transparent !important;
+	border: none !important;
+	color: #a1a1aa !important;
+	cursor: pointer !important;
+	font-size: 1.25rem !important;
+	line-height: 1 !important;
+	padding: 0.25rem !important;
+	position: absolute !important;
+	top: 0.5rem !important;
+	right: 0.5rem !important;
+}
+
+/* Navigation buttons */
+[class*="driver-popover-btn"] {
+	background-color: #3f3f46 !important;
+	color: #fff !important;
+	border: none !important;
+	border-radius: 0.25rem !important;
+	padding: 0.375rem 0.75rem !important;
+	font-size: 0.875rem !important;
+	cursor: pointer !important;
+	transition: background-color 0.2s !important;
+	font-family: 'Roboto Condensed', sans-serif !important;
+}
+
+[class*="driver-popover-btn"]:hover {
+	background-color: #52525b !important;
+}
+
+/* Primary/Next button */
+[class*="driver-popover-next"],
+[class*="driver-popover-primary"] {
+	background-color: #e4e4e7 !important;
+	color: #18181b !important;
+	font-weight: 500 !important;
+}
+
+/* Disabled button */
+[class*="driver-popover-btn"][disabled],
+[class*="driver-popover-btn"].disabled {
+	opacity: 0.5 !important;
+	cursor: not-allowed !important;
+}
+
+/* Highlighted element */
+.driverjs-highlighted-element,
+.driver-highlighted-element {
+	box-shadow: 0 0 0 4px rgba(228, 228, 231, 0.4), 0 0 25px rgba(0, 0, 0, 0.5) !important;
+	z-index: 9999 !important;
+	position: relative !important;
+}
+
+/* Overlay */
+.driverjs-overlay,
+.driver-overlay {
+	background-color: rgba(0, 0, 0, 0.7) !important;
+}
+.driver-popover .driver-popover-footer {
+	/* border-top: 1px solid #3f3f46 !important; */
+	padding: 0.5rem 1rem !important;
+	display: flex !important;
+	justify-content: space-between !important;
+	gap: 0.5rem !important;
+}
+.driver-popover .driver-btn {
+	background-color: #3f3f46 !important;
+	color: #fff !important;
+	border: none !important;
+	border-radius: 0.25rem !important;
+	padding: 0.375rem 0.75rem !important;
+	font-size: 0.875rem !important;
+	cursor: pointer !important;
+	transition: background-color 0.2s !important;
+	font-family: 'Roboto Condensed', sans-serif !important;
+}
+.driver-popover .driver-btn:hover {
+	background-color: #52525b !important;
+}
+.driver-popover .driver-btn-primary {
+	background-color: #e4e4e7 !important;
+	color: #18181b !important;
+	font-weight: 500 !important;
+}
+.driver-popover .driver-btn-primary:hover {
+	background-color: #fff !important;
+}
+.driver-popover .driver-progress-bar {
+	display: flex !important;
+	gap: 0.25rem !important;
+	padding: 0.5rem 1rem !important;
+	border-top: 1px solid #3f3f46 !important;
+}
+.driver-popover .driver-progress-bar-item {
+	flex: 1 !important;
+	height: 3px !important;
+	background-color: #3f3f46 !important;
+	border-radius: 2px !important;
+	transition: background-color 0.3s !important;
+}
+.driver-popover .driver-progress-bar-item.active {
+	background-color: #e4e4e7 !important;
+}
+.driver-popover .driver-close-btn {
+	background: transparent !important;
+	border: none !important;
+	color: #a1a1aa !important;
+	cursor: pointer !important;
+	font-size: 1.25rem !important;
+	line-height: 1 !important;
+	padding: 0.25rem !important;
+	position: absolute !important;
+	top: 0.5rem !important;
+	right: 0.5rem !important;
+}
+.driver-popover .driver-close-btn:hover {
+	color: #fff !important;
+}
+/* Close button - correct class name */
+.driver-popover-close-btn {
+	background: transparent !important;
+	border: none !important;
+	color: #a1a1aa !important;
+	cursor: pointer !important;
+	font-size: 1.25rem !important;
+	line-height: 1 !important;
+	padding: 0.25rem !important;
+	position: absolute !important;
+	top: 0.5rem !important;
+	right: 0.5rem !important;
+}
+.driver-popover-close-btn:hover {
+	color: #fff !important;
+}
+/* Navigation buttons - correct class names */
+.driver-popover-prev-btn,
+.driver-popover-next-btn {
+	background-color: #3f3f46 !important;
+	color: #fff !important;
+	border: none !important;
+	border-radius: 0.25rem !important;
+	padding: 0.375rem 0.75rem !important;
+	font-size: 0.875rem !important;
+	cursor: pointer !important;
+	transition: background-color 0.2s !important;
+	font-family: 'Roboto Condensed', sans-serif !important;
+}
+.driver-popover-prev-btn:hover:not(:disabled),
+.driver-popover-next-btn:hover:not(:disabled) {
+	background-color: #52525b !important;
+}
+.driver-popover-next-btn {
+	background-color: #e4e4e7 !important;
+	color: #18181b !important;
+	font-weight: 500 !important;
+}
+.driver-popover-next-btn:hover {
+	background-color: #fff !important;
+}
+.driver-popover-btn-disabled {
+	opacity: 0.5 !important;
+	cursor: not-allowed !important;
+}
+.driver-highlighted-element {
+	box-shadow: 0 0 0 4px rgba(228, 228, 231, 0.4), 0 0 25px rgba(0, 0, 0, 0.5) !important;
+	z-index: 9999 !important;
+	position: relative !important;
+}
+.driver-overlay {
+	background-color: rgba(0, 0, 0, 0.7) !important;
+	/* backdrop-filter: blur(2px) !important; */
+}
