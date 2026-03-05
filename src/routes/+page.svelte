@@ -240,7 +240,8 @@
 						class={`py-2 px-1 w-full min-w-max text-center text-base bg-transparent border-2 transition-all 
                                 duration-300 relative z-10 robotoFont ${
 																	!!semURL && semURL.length > 0
-																		? hoverClasses
+																		? ' bg-zinc-200 text-zinc-900 transition-all duration-300 relative z-10 robotoFont' +
+																			'hover:border-zinc-200 hover:text-zinc-200 hover:bg-zinc-900'
 																		: 'border-zinc-600 text-zinc-600 '
 																}`}
 					>
@@ -259,9 +260,15 @@
 				<a
 					id="createBtn"
 					href="/create"
-					class="py-2 w-3/4 lg:w-2/4 text-center text-base bg-transparent border-2 hover:border-zinc-200 hover:text-zinc-200 hover:bg-zinc-900
-                    bg-zinc-200 text-zinc-900 transition-all duration-300 relative z-10 robotoFont
-                    focus:bg-zinc-200 focus:text-black"
+					class={`py-2 w-3/4 lg:w-2/4 text-center text-base bg-transparent border-2 
+                    focus:bg-zinc-200 focus:text-black
+					${
+						!!semURL && semURL.length > 0
+							? 'hover:bg-zinc-200 hover:text-zinc-900 focus:bg-zinc-200 focus:text-black border-zinc-200 text-zinc-200 '
+							: ' bg-zinc-200 text-zinc-900 transition-all duration-300 relative z-10 robotoFont' +
+								'hover:border-zinc-200 hover:text-zinc-200 hover:bg-zinc-900'
+					}
+					`}
 				>
 					Create a Template
 				</a>
