@@ -48,6 +48,9 @@ body::-webkit-scrollbar-thumb
     font-family: 'Roboto Condensed', sans-serif;        
 }
 
+/* -------------------------------------------------------------------------- */
+/*                          driver.js POPOVER STYLING                         */
+/* -------------------------------------------------------------------------- */
 /* driver.js dark theme styling */
 .driver-popover {
 	background-color: #18181b !important;
@@ -139,16 +142,21 @@ body::-webkit-scrollbar-thumb
 
 /* Highlighted element */
 .driverjs-highlighted-element,
+.driver-active-element,
 .driver-highlighted-element {
-	box-shadow: 0 0 0 4px rgba(228, 228, 231, 0.4), 0 0 25px rgba(0, 0, 0, 0.5) !important;
+	/* box-shadow: 0 0 0 4px rgba(228, 228, 231, 0.4), 0 0 25px rgba(0, 0, 0, 0.5) !important; */
+    /* box-shadow: rgba(47, 207, 191, 0.16) 0px 1px 4px, rgb(26, 93, 77) 0px 0px 0px 3px; */
 	z-index: 9999 !important;
 	position: relative !important;
+    border: rgb(96, 244, 199) 3px solid;
+    border-radius: 4px;
 }
 
 /* Overlay */
 .driverjs-overlay,
 .driver-overlay {
 	background-color: rgba(0, 0, 0, 0.7) !important;
+	/* backdrop-filter: blur(2px) !important; */
 }
 .driver-popover .driver-popover-footer {
 	/* border-top: 1px solid #3f3f46 !important; */
@@ -260,7 +268,4 @@ body::-webkit-scrollbar-thumb
 	z-index: 9999 !important;
 	position: relative !important;
 }
-.driver-overlay {
-	background-color: rgba(0, 0, 0, 0.7) !important;
-	/* backdrop-filter: blur(2px) !important; */
-}
+/* ------------------------ end of driver.js styling ------------------------ */
