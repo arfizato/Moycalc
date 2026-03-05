@@ -38,10 +38,10 @@ You can create your own template if you can't find the one you need or you're no
 
 ### Roadmap
 
-- [ ] sound feature to troll.
-- [ ] save page with notet for future reference.
-- [ ] Add feat to send the grades to the user through email  or download .
-- [ ] Add a way for people to submit their templates to be  saved.
+- [ ] ~~sound feature to troll.~~
+- [ ] ~~save page with notet for future reference.~~
+- [ ] ~~Add feat to send the grades to the user through email  or download .~~
+- [ ] Add a way for people to submit their templates to be  saved. *(through google spreadsheet?)*
 - [ ] backend slug in calculate.
 - [x] Fix layout overflow in (`/create`).
 - [x] Add actual data in main (`/`).
@@ -50,6 +50,9 @@ You can create your own template if you can't find the one you need or you're no
 - [x] Better looking moyenne popup.
 - [x] Borders for Select in `/`.
 - [X] wa9telli yakhtar semester n3abi el université at the  same time.
+- [x] Added tutorial page to assist people in navigating through the app.
+- [ ] Add a way to reset tutorial progress
+- [ ] clean/update the contents and add clearer CTA
 
 
 # Setup
