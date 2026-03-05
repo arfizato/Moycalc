@@ -52,6 +52,15 @@
 								}
 							},
 							{
+								element: '#addRegmixBtn',
+								popover: {
+									title: 'Add Subjects',
+									description:
+										'Click here to add subjects to Regime Mixte. Fill in the subject name and coefficient.'
+								}
+							},
+
+							{
 								element: '#cc',
 								popover: {
 									title: 'Contrôle Continue',
@@ -65,14 +74,6 @@
 									title: 'Configure CC Coefficients',
 									description:
 										'Here you can configure the weights for Contrôle Continue. DS1 and DS2 are the two small tests, CC is for class participation. By default they are 0.4, 0.4, and 0.2. Leave as default if unsure!'
-								}
-							},
-							{
-								element: '#addRegmixBtn',
-								popover: {
-									title: 'Add Subjects',
-									description:
-										'Click here to add subjects to Regime Mixte. Fill in the subject name and coefficient.'
 								}
 							},
 							{
@@ -91,7 +92,10 @@
 										"When you're done adding subjects, click here to create and save your template!"
 								}
 							}
-						]
+						],
+						onDestroyed: () => {
+							localStorage.setItem('finished-create-tutorial', 'true');
+						}
 					});
 
 					driverObj.drive();
@@ -131,7 +135,7 @@
 	let regmix: RegMixControleContiue = {
 			coef: [0.3, 0.7],
 			subjects: [
-				// {name:"sqdqs",coef:1,grades:[,]},{name:"sqdqs",coef:1,grades:[,]}//,{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1}
+				// {name:"sqdqs",coef:1,grades:[,]},{name:"sqdqs",coef:1,grades:[,]}//,{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1},{name:"",coef:1}
 			]
 		},
 		cc: RegMixControleContiue = {
@@ -248,13 +252,19 @@
 			resizeBody();
 			let newElem;
 			if (itIsRegmix) {
-				regmix['subjects'] = [...regmix['subjects'], { name: '', coef: undefined, grades: [,] }]; // @ts-ignore
+				regmix['subjects'] = [
+					...regmix['subjects'],
+					{ name: '', coef: undefined, grades: [, null] }
+				]; // @ts-ignore
 				setTimeout(
 					() => document.getElementById(`RMname${regmix['subjects'].length - 1}`).focus(),
 					100
 				);
 			} else {
-				cc['subjects'] = [...cc['subjects'], { name: '', coef: undefined, grades: [, ,] }]; // @ts-ignore
+				cc['subjects'] = [
+					...cc['subjects'],
+					{ name: '', coef: undefined, grades: [null, null, null] }
+				]; // @ts-ignore
 				setTimeout(
 					() => document.getElementById(`CCname${cc['subjects'].length - 1}`).focus(),
 					100

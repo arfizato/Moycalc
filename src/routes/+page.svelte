@@ -57,7 +57,10 @@
 									description: "If your template doesn't exist, create one here!"
 								}
 							}
-						]
+						],
+						onDestroyed: () => {
+							localStorage.setItem('finished-tutorial', 'true');
+						}
 					});
 
 					// Start the driver tour
